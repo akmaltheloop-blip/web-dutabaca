@@ -1,20 +1,24 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+/*
+|--------------------------------------------------------------------------
+| Route sementara untuk halaman yang dikerjakan teman
+|--------------------------------------------------------------------------
+*/
+Route::get('/publikasi', function () {
+    return '<h1 style="font-family:sans-serif;padding:40px;">Halaman Publikasi </h1>';
+})->name('publikasi.index');
 
-require __DIR__.'/auth.php';
+Route::get('/kirim-karya', function () {
+    return '<h1 style="font-family:sans-serif;padding:40px;">Halaman Kirim Karya </h1>';
+})->name('kirim-karya.index');
+
+Route::get('/review', function () {
+    return '<h1 style="font-family:sans-serif;padding:40px;">Halaman Review )</h1>';
+})->name('review.index');
