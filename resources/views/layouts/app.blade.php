@@ -1,36 +1,77 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+    <title>Duta Baca</title>
+</head>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+<body class="bg-[#fcf9f8] text-gray-800 font-[Inter]">
+
+    {{-- Sidebar --}}
+    <aside class="fixed left-0 top-0 h-screen w-64 bg-white border-r border-[#eee] hidden md:flex flex-col shadow-sm">
+
+        <div class="p-6 border-b">
+            <h1 class="text-2xl font-bold text-[#5b3b1c]">
+                Duta Baca
+            </h1>
+
+            <p class="text-sm text-gray-500 uppercase mt-1">
+                Universitas Malikussaleh
+            </p>
         </div>
-    </body>
+
+        <nav class="flex-1 p-4 space-y-2">
+
+            {{-- Dashboard --}}
+            <a href="{{ route('dashboard') }}"
+               class="block px-4 py-3 rounded-xl bg-[#f7f1e8] hover:bg-[#efe3d4] transition">
+                Dashboard
+            </a>
+
+            {{-- Publikasi --}}
+            <a href="{{ route('publikasi.index') }}"
+               class="block px-4 py-3 rounded-xl hover:bg-[#f7f1e8] transition">
+                Publikasi
+            </a>
+
+            {{-- Kirim Karya --}}
+            <a href="{{ route('kirim-karya.index') }}"
+               class="block px-4 py-3 rounded-xl hover:bg-[#eef4e8] transition">
+                Kirim Karya
+            </a>
+
+            {{-- Review --}}
+            <a href="{{ route('review.index') }}"
+               class="block px-4 py-3 rounded-xl hover:bg-[#f7f1e8] transition">
+                Review
+            </a>
+
+        </nav>
+
+    </aside>
+
+    {{-- Main --}}
+    <main class="md:ml-64 min-h-screen">
+
+        <header class="bg-white border-b border-[#eee] px-8 py-5">
+            <h2 class="text-2xl font-semibold text-[#5b3b1c]">
+                @yield('title')
+            </h2>
+        </header>
+
+        <div class="p-8">
+            @yield('content')
+        </div>
+
+    </main>
+
+</body>
 </html>
