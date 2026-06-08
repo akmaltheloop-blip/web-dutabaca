@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PublicationController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -17,3 +18,5 @@ Route::get('/kirim-karya', function () {
 Route::get('/review', function () {
     return view('review.index');
 })->name('review.index');
+
+Route::resource('publications', PublicationController::class);

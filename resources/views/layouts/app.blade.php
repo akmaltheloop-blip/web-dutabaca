@@ -15,7 +15,6 @@
 
 <body class="bg-[#fcf9f8] text-gray-800 font-[Inter]">
 
-    {{-- Sidebar --}}
     <aside class="fixed left-0 top-0 h-screen w-64 bg-white border-r border-[#eee] hidden md:flex flex-col shadow-sm">
 
         <div class="p-6 border-b">
@@ -30,25 +29,21 @@
 
         <nav class="flex-1 p-4 space-y-2">
 
-            {{-- Dashboard --}}
             <a href="{{ route('dashboard') }}"
                class="block px-4 py-3 rounded-xl bg-[#f7f1e8] hover:bg-[#efe3d4] transition">
                 Dashboard
             </a>
 
-            {{-- Publikasi --}}
             <a href="{{ route('publikasi.index') }}"
                class="block px-4 py-3 rounded-xl hover:bg-[#f7f1e8] transition">
                 Publikasi
             </a>
 
-            {{-- Kirim Karya --}}
             <a href="{{ route('kirim-karya.index') }}"
                class="block px-4 py-3 rounded-xl hover:bg-[#eef4e8] transition">
                 Kirim Karya
             </a>
 
-            {{-- Review --}}
             <a href="{{ route('review.index') }}"
                class="block px-4 py-3 rounded-xl hover:bg-[#f7f1e8] transition">
                 Review
@@ -58,7 +53,6 @@
 
     </aside>
 
-    {{-- Main --}}
     <main class="md:ml-64 min-h-screen">
 
         <header class="bg-white border-b border-[#eee] px-8 py-5">
