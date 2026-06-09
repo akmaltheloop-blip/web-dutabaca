@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,6 +13,7 @@
 
     <title>Duta Baca</title>
 </head>
+
 
 <body class="bg-[#fcf9f8] text-gray-800 font-[Inter]">
 
@@ -31,29 +33,39 @@
         <nav class="flex-1 p-4 space-y-2">
 
             {{-- Dashboard --}}
-            <a href="{{ route('dashboard') }}"
-               class="block px-4 py-3 rounded-xl bg-[#f7f1e8] hover:bg-[#efe3d4] transition">
-                Dashboard
+           <a href="{{ route('dashboard') }}"
+             class="block px-4 py-3 rounded-xl transition
+             {{ request()->routeIs('dashboard') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+              Dashboard
             </a>
 
             {{-- Publikasi --}}
             <a href="{{ route('publikasi.index') }}"
-               class="block px-4 py-3 rounded-xl hover:bg-[#f7f1e8] transition">
-                Publikasi
+             class="block px-4 py-3 rounded-xl transition
+             {{ request()->routeIs('publikasi.*') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+           Publikasi
             </a>
+
 
             {{-- Kirim Karya --}}
             <a href="{{ route('kirim-karya.index') }}"
-               class="block px-4 py-3 rounded-xl hover:bg-[#eef4e8] transition">
-                Kirim Karya
+             class="block px-4 py-3 rounded-xl transition
+             {{ request()->routeIs('kirim-karya.*') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+              Kirim Karya
             </a>
 
             {{-- Review --}}
             <a href="{{ route('review.index') }}"
                class="block px-4 py-3 rounded-xl hover:bg-[#f7f1e8] transition">
-                Review
+                Penilaian
             </a>
 
+            {{-- Profil --}}
+            <a href="{{ route('profil.index') }}"
+            class="block px-4 py-3 rounded-xl transition
+              {{ request()->routeIs('profil.*') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+             Profil
+            </a>
         </nav>
 
     </aside>
@@ -72,6 +84,15 @@
         </div>
 
     </main>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+</script>
 
 </body>
 </html>
