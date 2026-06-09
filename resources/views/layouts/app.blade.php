@@ -1,23 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Duta Baca - @yield('title')</title>
 </head>
-<body class="bg-[#F8F4EC]">
 
-    <nav class="bg-[#5b3b1c] text-white p-5">
-        <h1 class="text-2xl font-bold">
-            Duta Baca
-        </h1>
-    </nav>
+<body class="bg-[#fcf9f8] text-gray-800 font-[Inter]">
 
-    <main class="container mx-auto p-8">
-        @yield('content')
+    {{-- Sidebar --}}
+    <aside class="fixed left-0 top-0 h-screen w-64 bg-white border-r border-[#eee] hidden md:flex flex-col shadow-sm">
+
+        <div class="p-6 border-b">
+            <h1 class="text-2xl font-bold text-[#5b3b1c]">
+                Duta Baca
+            </h1>
+            <p class="text-sm text-gray-500 uppercase mt-1">
+                Universitas Malikussaleh
+            </p>
+        </div>
+
+        <nav class="flex-1 p-4 space-y-2">
+
+            {{-- Dashboard --}}
+            <a href="{{ route('dashboard') }}"
+               class="block px-4 py-3 rounded-xl transition
+               {{ request()->routeIs('dashboard') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+                Dashboard
+            </a>
+
+            {{-- Publikasi --}}
+            <a href="{{ route('publikasi.index') }}"
+               class="block px-4 py-3 rounded-xl transition
+               {{ request()->routeIs('publikasi.*') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+                Publikasi
+            </a>
+
+            {{-- Kirim Karya --}}
+            <a href="{{ route('kirim-karya.index') }}"
+               class="block px-4 py-3 rounded-xl transition
+               {{ request()->routeIs('kirim-karya.*') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+                Kirim Karya
+            </a>
+
+            {{-- Penilaian / Review --}}
+            <a href="{{ route('review.index') }}"
+               class="block px-4 py-3 rounded-xl transition
+               {{ request()->routeIs('review.*') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+                Penilaian
+            </a>
+
+            {{-- Profil --}}
+            <a href="{{ route('profil.index') }}"
+               class="block px-4 py-3 rounded-xl transition
+               {{ request()->routeIs('profil.*') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+                Profil
+            </a>
+        </nav>
+
+    </aside>
+
+    {{-- Main Content --}}
+    <main class="md:ml-64 min-h-screen">
+
+        <header class="bg-white border-b border-[#eee] px-8 py-5">
+            <h2 class="text-2xl font-semibold text-[#5b3b1c]">
+                @yield('title')
+            </h2>
+        </header>
+
+        <div class="p-8">
+            @yield('content')
+        </div>
+
     </main>
 
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
 </body>
 </html>
