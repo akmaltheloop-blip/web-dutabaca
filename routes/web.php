@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\PublikasiController;
 
 Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/publikasi', function () {
-    return view('publikasi.index');
+Route::get('/publikasi/{kategori?}', function ($kategori = 'semua') {
+    return view('publikasi.index', compact('kategori'));
 })->name('publikasi.index');
 
 Route::get('/kirim-karya', function () {
@@ -19,4 +19,4 @@ Route::get('/review', function () {
     return view('review.index');
 })->name('review.index');
 
-Route::resource('publications', PublicationController::class);
+Route::resource('publikasi', PublikasiController::class);
