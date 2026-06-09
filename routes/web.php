@@ -30,3 +30,6 @@ Route::get('/profil', function () {
 
 // Resource Route untuk Publications
 Route::resource('publications', PublicationController::class);
+
+// Route Login & Register (Laravel Breeze)
+require __DIR__.'/auth.php';
