@@ -1,4 +1,20 @@
-<x-guest-layout>
+@extends('layouts.app')
+
+@section('title')
+
+@section('content')
+
+<div class="max-w-3xl mx-auto bg-white rounded-xl shadow p-8">
+
+    <div class="mb-6 text-center">
+        <h2 class="text-3xl font-bold text-[#5b3b1c]">
+            Daftar Akun
+        </h2>
+
+        <p class="text-gray-500 mt-2">
+            Daftar akun untuk mengirim karya di Web Duta Baca
+        </p>
+    </div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -87,14 +103,19 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+        <div class="flex justify-between items-center mt-6">
+
+            <a href="{{ route('login') }}"
+               class="text-sm text-[#5b3b1c] hover:underline">
+                Sudah punya akun?
             </a>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+            <button
+                type="submit"
+                class="bg-[#5b3b1c] text-white px-6 py-2 rounded-lg">
+                Daftar
+            </button>
+
         </div>
     </form>
-</x-guest-layout>
+@endsection

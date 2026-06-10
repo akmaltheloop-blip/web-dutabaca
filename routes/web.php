@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::get('/review', function () {
     return view('review.index');
 })->name('review.index');
 
+// Detail Review
 Route::get('/review/detail', function () {
     return view('review.detail');
 })->name('review.detail');
@@ -37,7 +39,6 @@ Route::get('/review/detail', function () {
 Route::get('/profil', function () {
     return view('profil.index');
 })->name('profil.index');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +50,7 @@ Route::resource('publications', PublicationController::class);
 
 /*
 |--------------------------------------------------------------------------
-| Authentication (Laravel Breeze)
+| Authentication
 |--------------------------------------------------------------------------
 */
 
