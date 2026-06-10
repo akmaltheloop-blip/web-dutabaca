@@ -3,33 +3,49 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicationController;
 
-// Halaman Utama (Dashboard)
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
+
+// Dashboard
 Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// Halaman Publikasi
+// Publikasi
 Route::get('/publikasi', function () {
     return view('publikasi.index');
 })->name('publikasi.index');
 
-// Halaman Kirim Karya
+// Kirim Karya
 Route::get('/kirim-karya', function () {
     return view('kirim-karya.index');
 })->name('kirim-karya.index');
 
-// Halaman Review
+// Review
 Route::get('/review', function () {
     return view('review.index');
 })->name('review.index');
 
-// Halaman Profil
+// Profil
 Route::get('/profil', function () {
     return view('profil.index');
 })->name('profil.index');
 
-// Resource Route untuk Publications
+/*
+|--------------------------------------------------------------------------
+| Publications Resource
+|--------------------------------------------------------------------------
+*/
+
 Route::resource('publications', PublicationController::class);
 
-// Route Login & Register (Laravel Breeze)
+/*
+|--------------------------------------------------------------------------
+| Authentication (Laravel Breeze)
+|--------------------------------------------------------------------------
+*/
+
 require __DIR__.'/auth.php';
