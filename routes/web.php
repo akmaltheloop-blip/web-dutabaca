@@ -22,3 +22,8 @@ Route::get('/review', function () {
 })->name('review.index');
 
 require __DIR__.'/auth.php';
+
+Route::get('/profil', function () {
+    return view('profil.index');
+})->name('profil.index');
+
