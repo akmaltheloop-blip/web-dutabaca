@@ -13,8 +13,11 @@ class PublikasiController extends Controller
      */
     public function index()
     {
-    return view('publikasi.index');
+    $publikasis = Publikasi::latest()->get();
+
+    return view('publikasi.index', compact('publikasis'));
     }
+
     /**
      * Show the form for creating a new resource.
      */

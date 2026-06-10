@@ -54,86 +54,109 @@
 
 </div>
 
-{{-- Featured Post --}}
-<div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 mb-10">
+{{-- Featured + Side Cards --}}
+<div class="grid lg:grid-cols-3 gap-6 mb-10">
 
-    <img
-        src="https://picsum.photos/1200/500"
-        alt="Cover Publikasi"
-        class="w-full h-[400px] object-cover hover:scale-105 transition duration-500"
-    >
+    {{-- Featured Card --}}
+    <div class="lg:col-span-2">
 
-    <div class="p-8">
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 h-full">
 
-        <span class="bg-[#F5E8D5] text-[#5B371E] px-3 py-1 rounded-full text-sm">
-            Cerpen
-        </span>
+            <img
+                src="https://picsum.photos/1200/700"
+                class="w-full h-[200px] object-cover"
+            >
 
-        <h2 class="text-3xl font-bold text-[#5B371E] mt-4">
-            Judul Publikasi Terbaru
-        </h2>
+            <div class="p-6">
 
-        <p class="text-gray-500 mt-2">
-            Oleh Miranda Yeppo • 8 Juni 2026
-        </p>
+                <span class="bg-[#F5E8D5] text-[#5B371E] px-3 py-1 rounded-full text-sm">
+                    Cerpen
+                </span>
 
-        <p class="text-gray-600 mt-4">
-            Ini adalah deskripsi singkat publikasi terbaru yang akan menarik minat pembaca untuk membuka karya secara lengkap.
-        </p>
+                <h2 class="text-3xl font-bold text-[#5B371E] mt-4">
+                    Judul Publikasi Terbaru
+                </h2>
 
-        <a href="#"
-           class="inline-block mt-6 bg-[#5B371E] text-white px-6 py-3 rounded-xl hover:bg-[#704829] transition">
-            Baca Selengkapnya
-        </a>
+                <p class="text-gray-500 mt-2">
+                    Oleh Miranda Yeppo • 8 Juni 2026
+                </p>
+
+                <p class="text-gray-600 mt-4">
+                    Ini adalah deskripsi singkat publikasi terbaru yang akan menarik minat pembaca untuk membuka karya secara lengkap.
+                </p>
+
+                <a href="#"
+                   class="inline-block mt-6 bg-[#5B371E] text-white px-6 py-3 rounded-xl hover:bg-[#704829] transition">
+
+                    Baca Selengkapnya
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{-- 2 Card Kecil --}}
+<div class="flex flex-col gap-4">
+
+    @for($i = 1; $i <= 2; $i++)
+
+    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:-translate-y-2 hover:shadow-xl transition duration-300">
+
+        <img
+            src="https://picsum.photos/400/{{ 250 + $i }}"
+            class="w-full h-36 object-cover"
+        >
+
+        <div class="p-3">
+
+            <h3 class="font-semibold text-[#5B371E]">
+                Judul Karya {{ $i }}
+            </h3>
+
+            <p class="text-gray-500 text-sm mt-1">
+                7 Juni 2026
+            </p>
+
+        </div>
+
+    </div>
+
+    @endfor
 
     </div>
 
 </div>
 
-{{-- Tulisan Lainnya --}}
+{{-- Card Lanjutan --}}
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
+    @for($i = 3; $i <= 8; $i++)
+
     <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:-translate-y-2 hover:shadow-xl transition duration-300">
-        <img src="https://picsum.photos/400/250" class="w-full h-48 object-cover">
+
+        <img
+            src="https://picsum.photos/400/{{ 500 + $i }}"
+            class="w-full h-48 object-cover"
+        >
 
         <div class="p-4">
+
             <h3 class="font-bold text-lg text-[#5B371E]">
-                Cerpen Mahasiswa
+                Judul Karya {{ $i }}
             </h3>
 
             <p class="text-gray-500 text-sm mt-2">
-                7 Juni 2026
+                {{ $i }} Juni 2026
             </p>
+
         </div>
+
     </div>
 
-    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:-translate-y-2 hover:shadow-xl transition duration-300">
-        <img src="https://picsum.photos/401/250" class="w-full h-48 object-cover">
-
-        <div class="p-4">
-            <h3 class="font-bold text-lg text-[#5B371E]">
-                Puisi Kehidupan
-            </h3>
-
-            <p class="text-gray-500 text-sm mt-2">
-                6 Juni 2026
-            </p>
-        </div>
-    </div>
-
-    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:-translate-y-2 hover:shadow-xl transition duration-300">
-        <img src="https://picsum.photos/402/250" class="w-full h-48 object-cover">
-
-        <div class="p-4">
-            <h3 class="font-bold text-lg text-[#5B371E]">
-                Pantun & Quotes
-            </h3>
-
-            <p class="text-gray-500 text-sm mt-2">
-                5 Juni 2026
-            </p>
-        </div>
-    </div>
+    @endfor
 
 </div>
 
@@ -180,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-<div class="mt-12 flex justify-end">
+<div class="mt-12 flex justify-center">
 
     <a href="{{ route('kirim-karya.index') }}"
        class="
