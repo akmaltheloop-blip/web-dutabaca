@@ -37,43 +37,121 @@
 
 @auth
 
-<div class="bg-white rounded-2xl p-8 shadow-sm max-w-3xl">
+<div class="bg-white rounded-2xl shadow-md p-8 text-center">
 
-    <h3 class="text-2xl font-bold mb-6">
-        Profil Saya
-    </h3>
+    <div class="w-28 h-28 rounded-full bg-[#5b3b1c]
+        text-white flex items-center justify-center
+        mx-auto text-4xl font-bold">
 
-    <div class="space-y-3">
+        {{ strtoupper(substr($user->name,0,1)) }}
+    </div>
 
-        <p><strong>Nama :</strong> {{ Auth::user()->name }}</p>
+    <h2 class="mt-4 text-2xl font-bold text-[#5b3b1c]">
+        {{ $user->name }}
+    </h2>
 
-        <p><strong>NIM :</strong> {{ Auth::user()->nim }}</p>
+    <p class="text-gray-500">
+        {{ '@'.$user->username }}
+    </p>
 
-        <p><strong>Fakultas :</strong> {{ Auth::user()->fakultas }}</p>
+    <div class="flex justify-center gap-3 mt-5">
 
-        <p><strong>Program Studi :</strong> {{ Auth::user()->prodi }}</p>
+        <a href="{{ route('profil.edit') }}"
+            class="px-4 py-2 border border-[#5b3b1c]
+            text-[#5b3b1c] rounded-lg
+            hover:bg-[#5b3b1c]
+            hover:text-white transition">
 
-        <p><strong>Username :</strong> {{ Auth::user()->username }}</p>
+            Edit Profil
+        </a>
 
-        <p><strong>Email :</strong> {{ Auth::user()->email }}</p>
+        <form method="POST"
+            action="{{ route('logout') }}">
+            @csrf
+
+            <button
+                class="px-4 py-2 border border-red-500
+                text-red-500 rounded-lg
+                hover:bg-red-500
+                hover:text-white transition">
+
+                Logout
+            </button>
+        </form>
 
     </div>
 
-    <form method="POST"
-          action="{{ route('logout') }}"
-          class="mt-6">
+</div>
 
-        @csrf
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
 
-        <button
-            type="submit"
-            class="px-6 py-3 bg-red-600 text-white rounded-xl">
-            Logout
-        </button>
+    <div class="bg-white rounded-xl shadow p-5 text-center">
+        <h3 class="text-3xl font-bold text-green-600">
+            {{ $published }}
+        </h3>
+        <p class="text-gray-600">
+            Published
+        </p>
+    </div>
 
-    </form>
+    <div class="bg-white rounded-xl shadow p-5 text-center">
+        <h3 class="text-3xl font-bold text-yellow-500">
+            {{ $review }}
+        </h3>
+        <p class="text-gray-600">
+            Menunggu Review
+        </p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-5 text-center">
+        <h3 class="text-3xl font-bold text-blue-500">
+            {{ $revisi }}
+        </h3>
+        <p class="text-gray-600">
+            Revisi
+        </p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-5 text-center">
+        <h3 class="text-3xl font-bold text-red-500">
+            {{ $ditolak }}
+        </h3>
+        <p class="text-gray-600">
+            Ditolak
+        </p>
+    </div>
 
 </div>
+
+<div class="bg-white rounded-2xl shadow-md p-8 mt-6">
+
+    <h3 class="text-xl font-bold text-[#5b3b1c] mb-6">
+        Informasi Profil
+    </h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+        <div>
+            <label class="text-gray-500">NIM</label>
+            <p class="font-semibold">{{ $user->nim }}</p>
+        </div>
+
+        <div>
+            <label class="text-gray-500">Fakultas</label>
+            <p class="font-semibold">{{ $user->fakultas }}</p>
+        </div>
+
+        <div>
+            <label class="text-gray-500">Program Studi</label>
+            <p class="font-semibold">{{ $user->prodi }}</p>
+        </div>
+
+        <div>
+            <label class="text-gray-500">Email</label>
+            <p class="font-semibold">{{ $user->email }}</p>
+        </div>
+
+    </div>
 
 @endauth
 

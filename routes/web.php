@@ -27,3 +27,17 @@ Route::get('/profil', function () {
     return view('profil.index');
 })->name('profil.index');
 
+use App\Http\Controllers\ProfilController;
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/profil', [ProfilController::class, 'index'])
+        ->name('profil.index');
+
+    Route::get('/profil/edit', [ProfilController::class, 'edit'])
+        ->name('profil.edit');
+    
+    Route::put('/profil/update', [ProfilController::class, 'update'])
+        ->name('profil.update');
+
+});
