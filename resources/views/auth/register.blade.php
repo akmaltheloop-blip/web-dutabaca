@@ -1,4 +1,20 @@
-<x-guest-layout>
+@extends('layouts.app')
+
+@section('title', 'Register')
+
+@section('content')
+
+<div class="max-w-3xl mx-auto bg-white rounded-xl shadow p-8">
+
+    <div class="mb-6 text-center">
+        <h2 class="text-3xl font-bold text-[#5b3b1c]">
+            Registrasi Akun
+        </h2>
+
+        <p class="text-gray-500 mt-2">
+            Daftar akun untuk mengirim karya di Web Duta Baca
+        </p>
+    </div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -97,4 +113,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+@endsection
