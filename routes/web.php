@@ -29,10 +29,15 @@ Route::get('/review', function () {
     return view('review.index');
 })->name('review.index');
 
+Route::get('/review/detail', function () {
+    return view('review.detail');
+})->name('review.detail');
+
 // Profil
 Route::get('/profil', function () {
     return view('profil.index');
 })->name('profil.index');
+
 
 /*
 |--------------------------------------------------------------------------
