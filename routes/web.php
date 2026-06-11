@@ -3,39 +3,59 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
-| Public Routes
+| Dashboard
 |--------------------------------------------------------------------------
 */
 
-// Dashboard
 Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// Publikasi
+/*
+|--------------------------------------------------------------------------
+| Publikasi
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/publikasi', function () {
     return view('publikasi.index');
 })->name('publikasi.index');
 
-// Kirim Karya
+/*
+|--------------------------------------------------------------------------
+| Kirim Karya
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/kirim-karya', function () {
     return view('kirim-karya.index');
 })->name('kirim-karya.index');
 
-// Review
-Route::get('/review', function () {
-    return view('review.index');
-})->name('review.index');
+/*
+|--------------------------------------------------------------------------
+| Penilaian / Review
+|--------------------------------------------------------------------------
+*/
 
-// Detail Review
-Route::get('/review/detail', function () {
-    return view('review.detail');
-})->name('review.detail');
+Route::get('/review', [ReviewController::class, 'index'])
+    ->name('review.index');
 
-// Profil
+Route::get('/review/{id}', [ReviewController::class, 'detail'])
+    ->name('review.detail');
+
+Route::post('/review/{id}', [ReviewController::class, 'updateStatus'])
+    ->name('review.update');
+
+/*
+|--------------------------------------------------------------------------
+| Profil
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/profil', function () {
     return view('profil.index');
 })->name('profil.index');

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Karya extends Model
 {
@@ -17,4 +18,12 @@ class Karya extends Model
         'status',
         'catatan_review'
     ];
+
+    /**
+     * Relasi ke user (penulis karya)
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

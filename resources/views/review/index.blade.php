@@ -14,41 +14,59 @@
         Karya yang menunggu proses penilaian reviewer.
     </p>
 
-    <div class="space-y-4">
+    @if($karyas->count() > 0)
 
-        <div class="border rounded-xl p-4 flex justify-between items-center">
-            <div>
-                <h4 class="font-semibold">Cerpen Literasi</h4>
-                <p class="text-sm text-gray-500">
-                    Penulis: Nur Akmal
-                </p>
-            </div>
+        <div class="space-y-4">
 
-            <a href="{{ route('review.detail') }}"
-               class="bg-[#5b3b1c] text-white px-4 py-2 rounded-lg">
-                Detail
-            </a>
+            @foreach($karyas as $karya)
+
+                <div class="border rounded-xl p-4 flex justify-between items-center">
+
+                    <div>
+
+                        <h4 class="font-semibold">
+                            {{ $karya->judul }}
+                        </h4>
+
+                        <p class="text-sm text-gray-500">
+                            Penulis: {{ $karya->nama }}
+                        </p>
+
+                        <p class="text-sm text-gray-400">
+                            Kategori: {{ $karya->kategori }}
+                        </p>
+
+                        <p class="text-sm text-gray-400">
+                            Status: {{ $karya->status }}
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="{{ route('review.detail', $karya->id) }}"
+                        class="bg-[#5b3b1c] text-white px-4 py-2 rounded-lg hover:bg-[#4a2f15]">
+
+                        Detail
+
+                    </a>
+
+                </div>
+
+            @endforeach
+
         </div>
-        <a href="{{ route('review.detail') }}"
-               class="text-sm text-[#5b3b1c] hover:underline">
-                Detail
-            </a>
 
-        <div class="border rounded-xl p-4 flex justify-between items-center">
-            <div>
-                <h4 class="font-semibold">Budaya Membaca</h4>
-                <p class="text-sm text-gray-500">
-                    Penulis: Fida
-                </p>
-            </div>
+    @else
 
-            <a href="{{ route('review.detail') }}"
-               class="bg-[#5b3b1c] text-white px-4 py-2 rounded-lg">
-                Detail
-            </a>
+        <div class="text-center py-10">
+
+            <p class="text-gray-500">
+                Tidak ada karya yang menunggu review.
+            </p>
+
         </div>
 
-    </div>
+    @endif
 
 </div>
 
