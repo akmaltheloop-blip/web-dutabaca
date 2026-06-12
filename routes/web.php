@@ -13,6 +13,10 @@ Route::get('/kirim-karya', function () {
     return view('kirim-karya.index');
 })->name('kirim-karya.index');
 
-Route::get('/review', function () {
-    return view('review.index');
-})->name('review.index');
+Route::get('/penilaian', function () {
+    return view('penilaian.index');
+})->name('penilaian.index');
+
+Route::get('/profil', function () {
+    return view('profil.index');
+})->name('profil.index');

@@ -3,6 +3,42 @@
 @section('title', 'Publikasi')
 
 @section('content')
+<style>
+.kategori-btn{
+    padding: 10px 22px;
+    border-radius: 9999px;
+
+    background: #f3f4f6;
+    color: #374151;
+
+    font-weight: 500;
+    cursor: pointer;
+
+    transition: all .3s ease;
+}
+
+.kategori-btn:hover{
+    background: #c89d78;
+    color: white;
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 8px 20px rgba(122,81,52,.25);
+}
+
+.kategori-btn.active{
+    background: #7a5134;
+    color: white;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(122,81,52,.35);
+}
+
+.kategori-btn.active:hover{
+    background: #8b5d3c;
+}
+</style>
 
 {{-- Header --}}
 <div class="mb-8">
@@ -24,21 +60,10 @@
 
             <div class="flex gap-3">
 
-<button class="kategori-btn active">
-    Semua
-</button>
-
-<button class="kategori-btn">
-    Cerpen
-</button>
-
-<button class="kategori-btn">
-    Puisi
-</button>
-
-<button class="kategori-btn">
-    Pantun & Quotes
-</button>
+<button class="kategori-btn active">Semua</button>
+<button class="kategori-btn">Cerpen</button>
+<button class="kategori-btn">Puisi</button>
+<button class="kategori-btn">Pantun & Quotes</button>
 
 </div>
 
@@ -49,7 +74,6 @@
             placeholder="Cari judul atau penulis..."
             class="border rounded-xl px-4 py-2 w-full md:w-72"
         >
-
     </div>
 
 </div>
@@ -170,31 +194,10 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
 
             buttons.forEach(btn => {
-
-
-                btn.classList.remove(
-                    'bg-[#7a5134]',
-                    'text-white',
-                    'shadow-md'
-                );
-
-                btn.classList.add(
-                    'bg-gray-100',
-                    'text-gray-700'
-                );
-
+                btn.classList.remove('active');
             });
 
-            this.classList.remove(
-                'bg-gray-100',
-                'text-gray-700'
-            );
-
-            this.classList.add(
-                'bg-[#7a5134]',
-                'text-white',
-                'shadow-md'
-            );
+            this.classList.add('active');
 
         });
 
@@ -207,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <a href="{{ route('kirim-karya.index') }}"
        class="
-       px-4 py-2
+       px-4 py-3
        rounded-xl
 
        bg-[#7a5134]

@@ -5,49 +5,45 @@
 @section('content')
 
 {{-- Header --}}
-<div class="flex justify-between items-center mb-8">
+<div data-aos="fade-down"
+     class="flex justify-between items-center pb-3 shadow-sm">
 
-    {{-- Logo kiri --}}
     <div class="flex items-center gap-4">
 
         <img
-            src="{{ asset('images/logo-dutabaca.png') }}"
+            src="{{ asset('images/logo-dutabaca.png') }}"  
             alt="Logo Duta Baca"
-            class="w-16 h-16 object-contain">
+            class="w-16 h-16 object-contain">  
 
         <div>
-            <h2 class="text-2xl font-bold text-[#5b3b1c]">
+            <h2 class="font-[Poppins] text-2xl font-bold text-[#5b3b1c]">
                 Duta Baca
             </h2>
 
-            <p class="text-gray-500 text-sm">
+            <p class="font-[Montserrat] text-[#482d13] text-sm">
                 UNIVERSITAS MALIKUSSALEH
             </p>
         </div>
 
     </div>
 
-    {{-- Search kanan --}}
-    <div class="w-80">
+</div>
 
-        <input
-            type="text"
-            placeholder="Cari publikasi..."
-            class="w-full border border-gray-300 rounded-2xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-[#7a5134]">
-
-    </div>
 
 </div>
 
 {{-- Banner --}}
-<div class="bg-gradient-to-r from-[#7a5134] to-[#c59a77]
-rounded-3xl p-10 text-white mb-8 flex justify-between items-center">
+<div data-aos="zoom-in"
+     class="bg-gradient-to-r from-[#7a5134] to-[#c59a77]
+     rounded-3xl p-10 text-white mb-8 flex justify-between items-center">
 
-    <div class="max-w-xl">
+    <div data-aos="fade-right"
+     data-aos-delay="200"
+     class="max-w-xl">  
 
-        <h3 class="text-4xl font-bold mb-3">
+        <h3 class="font-[Lora] text-4xl font-bold mb-3">
             Selamat Datang,
-            <br>Duta Literasi
+            <br>Sobat Literasi!
         </h3>
 
         <p class="text-lg opacity-90 mb-6">
@@ -57,21 +53,20 @@ rounded-3xl p-10 text-white mb-8 flex justify-between items-center">
 
         <div class="flex gap-4">
 
-            <a href="#"
-               class="bg-white text-[#5b3b1c] px-5 py-3 rounded-xl font-semibold">
-                Lihat Berita
-            </a>
+           <a href="#tentang-kami"
+             class="font-[Montserrat] bg-white text-[#5b3b1c] px-5 py-3 rounded-xl font-extrabold">
+                 Tentang Kami
+             </a>
 
-            <a href="#"
-               class="border border-white px-5 py-3 rounded-xl font-semibold">
-                Publikasi
-            </a>
+            
 
         </div>
     </div>
 
     {{-- Foto kanan --}}
-    <div class="hidden md:block">
+    <div data-aos="fade-left"
+     data-aos-delay="400"
+     class="hidden md:block">
 
         <img
             src="{{ asset('images/foto-dutabaca.jpeg') }}"
@@ -82,196 +77,203 @@ rounded-3xl p-10 text-white mb-8 flex justify-between items-center">
 
 </div>
 
-{{-- Statistik --}}
-<div class="grid md:grid-cols-3 gap-6 mb-8">
 
-    <div class="bg-white rounded-3xl p-6 shadow-sm">
-
-        <h4 class="text-lg font-semibold text-[#5b3b1c]">
-            Total Publikasi
-        </h4>
-
-        <p class="text-4xl font-bold mt-2">
-            12
-        </p>
-
-        <p class="text-green-600 mt-2">
-            +2 bulan ini
-        </p>
-
-    </div>
-
-    <div class="bg-white rounded-3xl p-6 shadow-sm">
-
-        <h4 class="text-lg font-semibold text-[#5b3b1c]">
-            Karya Terkirim
-        </h4>
-
-        <p class="text-4xl font-bold mt-2">
-            8
-        </p>
-
-        <p class="text-yellow-600 mt-2">
-            3 menunggu review
-        </p>
-
-    </div>
-
-    <div class="bg-white rounded-3xl p-6 shadow-sm">
-
-        <h4 class="text-lg font-semibold text-[#5b3b1c]">
-            Review
-        </h4>
-
-        <p class="text-4xl font-bold mt-2">
-            5
-        </p>
-
-        <p class="text-green-600 mt-2">
-            Rata-rata 4.8/5
-        </p>
-
-    </div>
-
-</div>
 
 {{-- Bawah --}}
-<div class="grid md:grid-cols-2 gap-6">
+<div class="space-y-6">
 
     {{-- Kolom kiri --}}
     <div class="space-y-6">
 
-        {{-- Sorotan --}}
-        <div class="bg-white rounded-3xl p-8 shadow-sm">
+        {{-- Slider Berita --}}
+<div class="swiper beritaSwiper">
 
-            <h3 class="text-xl font-bold text-[#5b3b1c] mb-3">
-                Sorotan Pekan Ini
-            </h3>
+    <div class="swiper-wrapper">
 
-            <h4 class="text-2xl font-semibold mb-3">
+        {{-- Berita 1 --}}
+        <div class="swiper-slide">
+            <div class="bg-white rounded-2xl p-5 shadow-lg h-[280px] flex flex-col">
+                <h4 class="font-[Cinzel] text-lg font-semibold mb-2">
                 Nur Akmal Harumkan Unimal di Ajang Duta Baca
             </h4>
 
-            <p class="text-gray-600 leading-8">
-                Nur Akmal, mahasiswa Program Studi Teknik Informatika,
-                sukses meraih gelar Duta Baca Unimal 2025 Wakil III
-                dalam ajang bergengsi yang digelar
-                UPT Perpustakaan Universitas Malikussaleh.
+            <p class="text-sm text-gray-600 leading-6 line-clamp-3">
+                Nur Akmal, mahasiswa Program Studi Teknik Informatika 
+                sukses meraih gelar Duta Baca Unimal 2025 Wakil III...
             </p>
-
-            <a
-                href="https://share.google/Oe2JAuSMuqPZwCtgz"
-                target="_blank"
-                class="inline-block mt-6 bg-[#7a5134] text-white px-5 py-3 rounded-xl hover:bg-[#5b3b1c] transition">
+            <a href="https://news.unimal.ac.id/index/single/7731/empat-duta-baca-unimal-raih-prestasi-pada-lomba-video-konten-literasi-aceh-utara"
+               target="_blank"
+               class="inline-block mt-auto px-5 py-3 rounded-xl
+               bg-gradient-to-r from-[#7a5134] to-[#c59a77]
+               text-white font-semibold
+               transition-all duration-300
+               hover:shadow-xl
+               hover:-translate-y-1">
                 Baca Selengkapnya
             </a>
-
+        </div>
         </div>
 
-        {{-- Berita Kedua --}}
-        <div class="bg-white rounded-3xl p-8 shadow-sm">
+        {{-- Berita 2 --}}
+        <div class="swiper-slide">
+            <div class="bg-white rounded-2xl p-5 shadow-lg h-[280px] flex flex-col">
 
-            <h4 class="text-2xl font-semibold mb-3">
+         <h4 class="font-[Cinzel] text-lg font-semibold mb-2">
                 Gandeng Duta Humas dan Ruang Aksara,
-                Duta Baca Unimal Meriahkan Festival Literasi Aceh Utara
+                Duta Baca Unimal Meriahkan Festival..
             </h4>
 
-            <p class="text-gray-600 leading-8">
+             <p class="text-sm text-gray-600 leading-6 line-clamp-3">
                 Duta Baca Universitas Malikussaleh (Unimal)
-                berkolaborasi dengan Duta Humas Unimal dan
-                komunitas literasi Ruang Aksara ikut memeriahkan
-                Festival Literasi Kabupaten Aceh Utara tahun 2025.
+                berkolaborasi dengan...
             </p>
 
-            <a
-                href="https://news.unimal.ac.id/index/single/7205/gandeng-duta-humas-dan-ruang-aksara-duta-baca-unimal-meriahkan-festival-literasi-aceh-utara"
-                target="_blank"
-                class="inline-block mt-6 bg-[#7a5134] text-white px-5 py-3 rounded-xl hover:bg-[#5b3b1c] transition">
+            <a href="https://news.unimal.ac.id/index/single/7205/gandeng-duta-humas-dan-ruang-aksara-duta-baca-unimal-meriahkan-festival-literasi-aceh-utara"
+               target="_blank"
+               class="inline-block mt-auto px-5 py-3 rounded-xl
+               bg-gradient-to-r from-[#7a5134] to-[#c59a77]
+               text-white font-semibold
+               transition-all duration-300
+               hover:shadow-xl
+               hover:-translate-y-1">
                 Baca Selengkapnya
             </a>
-</div>
-         {{-- Berita Ketiga --}}
-         <div class="bg-white rounded-3xl p-8 shadow-sm">
 
-            <h4 class="text-2xl font-semibold mb-3">
-                Mahasiswa Teknik Unimal Raih Juara 
-                Harapan III Duta Baca Aceh Utara 2025
+         </div>
+        </div>
+
+        {{-- Berita 3 --}}
+        <div class="swiper-slide">
+            <div class="bg-white rounded-2xl p-5 shadow-lg h-[280px] flex flex-col">
+
+            <h4 class="font-[Cinzel] text-lg font-semibold mb-2">
+               Mahasiswa Teknik Unimal Raih Juara 
+                Harapan III Duta Baca Aceh..
             </h4>
-
-            <p class="text-gray-600 leading-8">
+            
+            <p class="text-sm text-gray-600 leading-6 line-clamp-3">
                 Pemilihan Duta Baca tingkat daerah 
-                Kabupaten/Kota tahun 2025 yang digelar 
-                Dinas Perpustakaan dan Kearsipan Kabupaten 
-                Aceh Utara berlangsung sukses dan mendapat 
-                antusiasme tinggi dari peserta maupun masyarakat 
-                pemerhati literasi.
+                Kabupaten/Kota tahun 2025
             </p>
-
-            <a
-                href="https://news.unimal.ac.id/index/single/7409/mahasiswa-teknik-unimal-raih-juara-harapan-iii-duta-baca-aceh-utara-2025"
-                target="_blank"
-                class="inline-block mt-6 bg-[#7a5134] text-white px-5 py-3 rounded-xl hover:bg-[#5b3b1c] transition">
+             <a href="https://news.unimal.ac.id/index/single/7409/mahasiswa-teknik-unimal-raih-juara-harapan-iii-duta-baca-aceh-utara-2025"
+               target="_blank"
+               class="inline-block mt-auto px-5 py-3 rounded-xl
+               bg-gradient-to-r from-[#7a5134] to-[#c59a77]
+               text-white font-semibold
+               transition-all duration-300
+               hover:shadow-xl
+               hover:-translate-y-1">
                 Baca Selengkapnya
             </a>
 
-        
-
+       </div>
         </div>
-         {{-- Berita empat --}}
-         <div class="bg-white rounded-3xl p-8 shadow-sm">
 
-            <h4 class="text-2xl font-semibold mb-3">
-                Mahasiswa Informatika Unimal Tampil 
-                di Ajang Literasi dan Bahasa, Perkuat 
-                Peran sebagai Duta Baca dan Duta Bahasa
+        {{-- Berita 4 --}}
+        <div class="swiper-slide">
+            <div class="bg-white rounded-2xl p-5 shadow-lg h-[280px] flex flex-col">
 
+            <h4 class="font-[Cinzel] text-lg font-semibold mb-2">
+               Mahasiswa Informatika Unimal Tampil 
+                di Ajang Literasi dan..
             </h4>
 
-            <p class="text-gray-600 leading-8">
+           <p class="text-sm text-gray-600 leading-6 line-clamp-3">
                 Kiprah mahasiswa Program Studi Teknik Informatika, 
-                Jurusan Informatika, Universitas Malikussaleh kembali 
-                terlihat dalam penguatan budaya literasi dan bahasa 
-                melalui partisipasi serta prestasi di berbagai ajang strategis
+                Jurusan Informatika...
             </p>
 
-            <a
-                href="https://informatika.unimal.ac.id/berita/mahasiswa-informatika-unimal-tampil-di-ajang-literasi-dan-bahasa-perkuat-peran-sebagai-duta-baca-dan-duta-bahasa"
-                target="_blank"
-                class="inline-block mt-6 bg-[#7a5134] text-white px-5 py-3 rounded-xl hover:bg-[#5b3b1c] transition">
+            <a href="https://informatika.unimal.ac.id/berita/mahasiswa-informatika-unimal-tampil-di-ajang-literasi-dan-bahasa-perkuat-peran-sebagai-duta-baca-dan-duta-bahasa"
+               target="_blank"
+               class="inline-block mt-auto px-5 py-3 rounded-xl
+               bg-gradient-to-r from-[#7a5134] to-[#c59a77]
+               text-white font-semibold
+               transition-all duration-300
+               hover:shadow-xl
+               hover:-translate-y-1">
                 Baca Selengkapnya
             </a>
-
-        
-
         </div>
+         </div>
+    </div>
+     {{-- Titik-titik --}}
+    <div class="swiper-pagination mt-4"></div>
+</div>
 
     </div>
+    {{-- Visi & Misi --}}
+<div id="tentang-kami" class="space-y-6 mt-10">
 
-    {{-- Aktivitas --}}
-    <div class="bg-white rounded-3xl p-8 shadow-sm">
+    {{-- Visi --}}
+    <div
+        data-aos="fade-right"
+        class="bg-white rounded-3xl p-8 shadow-xl">
 
-        <h3 class="text-xl font-bold text-[#5b3b1c] mb-6">
-            Aktivitas Terbaru
+        <h3 class="font-[Lora] text-2xl font-bold text-[#5b3b1c] mb-4">
+            Visi
         </h3>
 
-        <div class="space-y-4">
+        <p class="text-black leading-8">
+            Menjadi pelopor budaya literasi di lingkungan
+            Universitas Malikussaleh yang kreatif, inovatif,
+            dan berdaya saing dalam meningkatkan minat baca,
+            menulis, serta pengembangan ilmu pengetahuan.
+        </p>
 
-            <div class="border-b pb-3">
-                Karya baru dikirim oleh Siti Aisyah
-            </div>
+    </div>
 
-            <div class="border-b pb-3">
-                Review baru diberikan oleh Ahmad Fauzan
-            </div>
+    {{-- Misi --}}
+    <div
+        data-aos="fade-left"
+        class="bg-white rounded-3xl p-8 shadow-xl">
 
-            <div>
-                Publikasi “Ruang Baca” diterbitkan
-            </div>
+        <h3 class="font-[Lora] text-2xl font-bold text-[#5b3b1c] mb-4">
+            Misi
+        </h3>
 
-        </div>
+        <ul class="list-disc pl-5 text-black leading-8 space-y-2">
+            <li>Meningkatkan budaya membaca di kalangan mahasiswa.</li>
+            <li>Mendorong lahirnya karya tulis yang berkualitas.</li>
+            <li>Menjadi wadah pengembangan literasi kampus.</li>
+            <li>Membangun kolaborasi dengan komunitas literasi.</li>
+            <li>Menyebarluaskan informasi dan publikasi ilmiah.</li>
+        </ul>
 
     </div>
 
 </div>
 
+    
+
+</div>
+
+<script>
+new Swiper(".beritaSwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+
+    grabCursor: true,
+
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+
+    autoplay: {
+        delay: 4000,    
+        disableOnInteraction: false,
+    },
+
+    breakpoints: {
+        768: {
+            slidesPerView: 2,
+        },
+        1024: {
+            slidesPerView: 3,
+        }
+    }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 @endsection

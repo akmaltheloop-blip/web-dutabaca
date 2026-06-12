@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Review')
+@section('title', 'penilaian')
 
 @section('content')
 
 <div class="bg-white rounded-2xl p-8 shadow-sm">
-    Halaman Review
+    Halaman Penilaian
 </div>
 
 @endsection
