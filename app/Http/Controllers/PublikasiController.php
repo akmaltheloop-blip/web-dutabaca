@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Publication;
+use App\Models\Publikasi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PublicationController extends Controller
+class PublikasiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-    return view('publications.index');
+    $publikasis = Publikasi::latest()->get();
+
+    return view('publikasi.index', compact('publikasis'));
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -34,7 +37,7 @@ class PublicationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Publication $publication)
+    public function show(Publikasi $publikasi)
     {
         //
     }
@@ -42,7 +45,7 @@ class PublicationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Publication $publication)
+    public function edit(Publikasi $publikasi)
     {
         //
     }
@@ -50,7 +53,7 @@ class PublicationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Publication $publication)
+    public function update(Request $request, Publikasi $publikasi)
     {
         //
     }
@@ -58,7 +61,7 @@ class PublicationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Publication $publication)
+    public function destroy(Publikasi $publikasi)
     {
         //
     }

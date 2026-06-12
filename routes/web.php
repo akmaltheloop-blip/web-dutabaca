@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PublicationController;
-use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\PublikasiController;
 use App\Http\Controllers\ReviewController;
 
 /*
@@ -21,9 +20,7 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::get('/publikasi', function () {
-    return view('publikasi.index');
-})->name('publikasi.index');
+Route::resource('publikasi', PublikasiController::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -59,14 +56,6 @@ Route::post('/review/{id}', [ReviewController::class, 'updateStatus'])
 Route::get('/profil', function () {
     return view('profil.index');
 })->name('profil.index');
-
-/*
-|--------------------------------------------------------------------------
-| Publications Resource
-|--------------------------------------------------------------------------
-*/
-
-Route::resource('publications', PublicationController::class);
 
 /*
 |--------------------------------------------------------------------------

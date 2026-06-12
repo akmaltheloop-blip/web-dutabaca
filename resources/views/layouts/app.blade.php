@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <title>Duta Baca - @yield('title')</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <!-- Vite Laravel -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-[#fcf9f8] text-gray-800 font-[Inter]">
 
-    {{-- Sidebar --}}
+    <!-- SIDEBAR -->
     <aside class="fixed left-0 top-0 h-screen w-64 bg-white border-r border-[#eee] hidden md:flex flex-col shadow-sm">
 
         <div class="p-6 border-b">
@@ -30,45 +35,41 @@
 
         <nav class="flex-1 p-4 space-y-2">
 
-            {{-- Dashboard --}}
             <a href="{{ route('dashboard') }}"
                class="block px-4 py-3 rounded-xl transition
                {{ request()->routeIs('dashboard') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
                 Dashboard
             </a>
 
-            {{-- Publikasi --}}
             <a href="{{ route('publikasi.index') }}"
                class="block px-4 py-3 rounded-xl transition
                {{ request()->routeIs('publikasi.*') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
                 Publikasi
             </a>
 
-            {{-- Kirim Karya --}}
             <a href="{{ route('kirim-karya.index') }}"
                class="block px-4 py-3 rounded-xl transition
                {{ request()->routeIs('kirim-karya.*') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
                 Kirim Karya
             </a>
 
-            {{-- Penilaian / Review --}}
             <a href="{{ route('review.index') }}"
                class="block px-4 py-3 rounded-xl transition
                {{ request()->routeIs('review.*') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
                 Penilaian
             </a>
 
-            {{-- Profil --}}
             <a href="{{ route('profil.index') }}"
                class="block px-4 py-3 rounded-xl transition
                {{ request()->routeIs('profil.*') ? 'bg-[#f7f1e8] font-semibold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
                 Profil
             </a>
+
         </nav>
 
     </aside>
 
-    {{-- Main Content --}}
+    <!-- MAIN CONTENT -->
     <main class="md:ml-64 min-h-screen">
 
         <header class="bg-white border-b border-[#eee] px-8 py-5">
@@ -83,6 +84,7 @@
 
     </main>
 
+    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -90,5 +92,6 @@
             once: true
         });
     </script>
+
 </body>
 </html>
