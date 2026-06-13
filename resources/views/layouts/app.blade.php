@@ -26,6 +26,20 @@
 
 .swiper-slide {
     height: auto;
+.fotoSwiper {
+    overflow: hidden;
+}
+
+.fotoSwiper .swiper-slide {
+    width: 100%;
+    height: 250px;
+}
+
+.fotoSwiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 }
 </style>
 
@@ -124,7 +138,7 @@
 
     <p class="font-[poppins] mt-6 text-lg text-[#f7f1e8] -400">
         © {{ date('Y') }} Duta Baca Universitas Malikussaleh
-    </p>
+    </p>    
 
 </footer>
 
