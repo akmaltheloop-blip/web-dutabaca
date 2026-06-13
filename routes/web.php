@@ -1,22 +1,77 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\PublikasiController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ReviewController;
+
+/*
+|--------------------------------------------------------------------------
+| Dashboard
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
+/*
+|--------------------------------------------------------------------------
+| Publikasi
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/publikasi', function () {
     return view('publikasi.index');
 })->name('publikasi.index');
+
+/*
+|--------------------------------------------------------------------------
+| Kirim Karya
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/kirim-karya', function () {
     return view('kirim-karya.index');
 })->name('kirim-karya.index');
 
-Route::get('/review', function () {
-    return view('review.index');
-})->name('review.index');
+/*
+|--------------------------------------------------------------------------
+| Penilaian / Review
+|--------------------------------------------------------------------------
+*/
 
-Route::resource('publications', PublicationController::class);
+Route::get('/review', [ReviewController::class, 'index'])
+    ->name('review.index');
+
+Route::get('/review/{id}', [ReviewController::class, 'detail'])
+    ->name('review.detail');
+
+Route::post('/review/{id}', [ReviewController::class, 'updateStatus'])
+    ->name('review.update');
+
+/*
+|--------------------------------------------------------------------------
+| Profil
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/profil', function () {
+    return view('profil.index');
+})->name('profil.index');
+
+/*
+|--------------------------------------------------------------------------
+| Publikasi Resource
+|--------------------------------------------------------------------------
+*/
+
+Route::resource('publikasi', PublikasiController::class);
+
+/*
+|--------------------------------------------------------------------------
+| Authentication
+|--------------------------------------------------------------------------
+*/
+
+require __DIR__.'/auth.php';

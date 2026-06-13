@@ -1,18 +1,82 @@
-<x-guest-layout>
+@extends('layouts.app')
+
+@section('title')
+
+@section('content')
+
+<div class="max-w-3xl mx-auto bg-white rounded-xl shadow p-8">
+
+    <div class="mb-6 text-center">
+        <h2 class="text-3xl font-bold text-[#5b3b1c]">
+            Daftar Akun
+        </h2>
+
+        <p class="text-gray-500 mt-2">
+            Daftar akun untuk mengirim karya di Web Duta Baca
+        </p>
+    </div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <!-- Name -->
+        <!-- Nama -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nama Lengkap')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
+        
+        <!-- NIM -->
+        <div class="mt-4">
+            <x-input-label for="nim" :value="__('NIM')" />
+            <x-text-input id="nim" class="block mt-1 w-full"
+                type="text"
+                name="nim"
+                :value="old('nim')"
+                required />
+            <x-input-error :messages="$errors->get('nim')" class="mt-2" />
+        </div>
+
+        <!-- FAKULTAS -->
+        <div class="mt-4">
+            <x-input-label for="fakultas" :value="__('Fakultas')" />
+            <x-text-input id="fakultas" class="block mt-1 w-full"
+                type="text"
+                name="fakultas"
+                :value="old('fakultas')"
+                required />
+            <x-input-error :messages="$errors->get('fakultas')" class="mt-2" />
+        </div>
+
+        <!-- prodi -->
+        <div class="mt-4">
+            <x-input-label for="prodi" :value="__('Program Studi')" />
+            <x-text-input id="prodi" class="block mt-1 w-full"
+                type="text"
+                name="prodi"
+                :value="old('prodi')"
+                required />
+            <x-input-error :messages="$errors->get('prodi')" class="mt-2" />
+        </div>
+
+        <!-- Username -->
+        <div class="mt-4">
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input id="username" class="block mt-1 w-full"
+                type="text"
+                name="username"
+                :value="old('username')"
+                required />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" 
+            type="email" 
+            name="email" 
+            :value="old('email')" 
+            required />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -39,14 +103,19 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+        <div class="flex justify-between items-center mt-6">
+
+            <a href="{{ route('login') }}"
+               class="text-sm text-[#5b3b1c] hover:underline">
+                Sudah punya akun?
             </a>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+            <button
+                type="submit"
+                class="bg-[#5b3b1c] text-white px-6 py-2 rounded-lg">
+                Daftar
+            </button>
+
         </div>
     </form>
-</x-guest-layout>
+@endsection

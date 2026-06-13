@@ -11,14 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('publications', function (Blueprint $table) {
+        Schema::create('publikasis', function (Blueprint $table) {
+
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->string('image')->nullable();
-            $table->string('author');
+
+            $table->string('judul');
+
+            $table->string('penulis');
+
+            $table->string('kategori');
+
+            $table->text('deskripsi');
+
+            $table->longText('isi');
+
+            $table->string('cover')->nullable();
+
             $table->timestamps();
-});
+
+        });
     }
 
     /**
@@ -26,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('publications');
+        Schema::dropIfExists('publikasis');
     }
 };
