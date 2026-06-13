@@ -7,7 +7,16 @@ use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
-| Dashboard
+| Authentication System (Pindahkan ke Atas)
+|--------------------------------------------------------------------------
+| File ini harus dimuat lebih awal agar middleware 'auth' 
+| dikenali dengan benar oleh Laravel sebelum grup route di bawahnya berjalan.
+*/
+require __DIR__.'/auth.php';
+
+/*
+|--------------------------------------------------------------------------
+| Public Routes (Akses Tanpa Login)
 |--------------------------------------------------------------------------
 */
 
@@ -15,63 +24,30 @@ Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-/*
-|--------------------------------------------------------------------------
-| Publikasi
-|--------------------------------------------------------------------------
-*/
+// Penilaian / Review
+Route::get('/review', [ReviewController::class, 'index'])->name('review.index');
+Route::get('/review/{id}', [ReviewController::class, 'detail'])->name('review.detail');
+Route::post('/review/{id}', [ReviewController::class, 'updateStatus'])->name('review.update');
 
-Route::get('/publikasi', function () {
-    return view('publikasi.index');
-})->name('publikasi.index');
-
-/*
-|--------------------------------------------------------------------------
-| Kirim Karya
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/kirim-karya', function () {
-    return view('kirim-karya.index');
-})->name('kirim-karya.index');
-
-/*
-|--------------------------------------------------------------------------
-| Penilaian / Review
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/review', [ReviewController::class, 'index'])
-    ->name('review.index');
-
-Route::get('/review/{id}', [ReviewController::class, 'detail'])
-    ->name('review.detail');
-
-Route::post('/review/{id}', [ReviewController::class, 'updateStatus'])
-    ->name('review.update');
-
-/*
-|--------------------------------------------------------------------------
-| Profil
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/profil', function () {
-    return view('profil.index');
-})->name('profil.index');
-
-/*
-|--------------------------------------------------------------------------
-| Publikasi Resource
-|--------------------------------------------------------------------------
-*/
-
+// Publikasi (Menggunakan Resource Controller untuk CRUD)
 Route::resource('publikasi', PublikasiController::class);
 
+
 /*
 |--------------------------------------------------------------------------
-| Authentication
+| Authenticated Routes (HANYA BISA DIAKSES SETELAH LOGIN)
 |--------------------------------------------------------------------------
 */
+Route::middleware('auth')->group(function () {
 
-require __DIR__.'/auth.php';
+    // Kirim Karya (Sekarang sudah pasti terkunci)
+    Route::get('/kirim-karya', function () {
+        return view('kirim-karya.index');
+    })->name('kirim-karya.index');
+
+    // Profil (Sudah dipindahkan ke dalam sini agar ikut terkunci)
+    Route::get('/profil', function () {
+        return view('profil.index');
+    })->name('profil.index');
+    
+});
