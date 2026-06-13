@@ -24,9 +24,28 @@
             padding: 15px 0 30px;
         }
 
-        .swiper-wrapper {
-            align-items: stretch;
-        }
+.swiper-wrapper {
+    align-items: stretch;
+}
+
+.swiper-slide {
+    height: auto;
+.fotoSwiper {
+    overflow: hidden;
+}
+
+.fotoSwiper .swiper-slide {
+    width: 100%;
+    height: 250px;
+}
+
+.fotoSwiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+}
+</style>
 
         .swiper-slide {
             height: auto;
@@ -131,6 +150,9 @@
             </p>
 
         </footer>
+    <p class="font-[poppins] mt-6 text-lg text-[#f7f1e8] -400">
+        © {{ date('Y') }} Duta Baca Universitas Malikussaleh
+    </p>    
 
     </main>
 
