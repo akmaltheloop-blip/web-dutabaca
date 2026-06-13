@@ -13,9 +13,9 @@ class PublikasiController extends Controller
      */
     public function index()
     {
-    $publikasis = Publikasi::latest()->get();
+    $publikasi = publikasi::latest()->get();
 
-    return view('publikasi.index', compact('publikasis'));
+    return view('publikasi.index', compact('publikasi'));
     }
 
     /**
