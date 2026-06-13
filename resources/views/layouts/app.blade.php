@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="id">
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -7,55 +6,47 @@
 
     <title>Duta Baca - @yield('title')</title>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Vite Laravel -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
         .swiper {
             overflow: hidden;
             padding: 15px 0 30px;
         }
-
-.swiper-wrapper {
-    align-items: stretch;
-}
-
-.swiper-slide {
-    height: auto;
-.fotoSwiper {
-    overflow: hidden;
-}
-
-.fotoSwiper .swiper-slide {
-    width: 100%;
-    height: 250px;
-}
-
-.fotoSwiper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-}
-</style>
-
+        .swiper-wrapper {
+            align-items: stretch;
+        }
         .swiper-slide {
             height: auto;
+        }
+        .fotoSwiper {
+            overflow: hidden;
+        }
+        .fotoSwiper .swiper-slide {
+            width: 100%;
+            height: 250px;
+        }
+        .fotoSwiper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
 
 <body class="bg-[#fcf9f8] text-gray-800 font-[Inter]">
 
-    {{-- Sidebar --}}
+    <!-- SIDEBAR -->
     <aside class="fixed left-0 top-0 h-screen w-64 bg-white border-r border-[#eee] hidden md:flex flex-col shadow-sm">
 
         <div class="p-6 border-b">
@@ -93,14 +84,12 @@
                 Kirim Karya
             </a>
 
-            {{-- Penilaian --}}
             <a href="{{ route('review.index') }}"
                class="font-[Montserrat] block px-4 py-3 rounded-xl transition
                {{ request()->routeIs('review.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
                 Penilaian
             </a>
 
-            {{-- Profil --}}
             <a href="{{ route('profil.index') }}"
                class="font-[Montserrat] block px-4 py-3 rounded-xl transition
                {{ request()->routeIs('profil.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
@@ -111,7 +100,8 @@
 
     </aside>
 
-    {{-- Main --}}
+
+    <!-- MAIN CONTENT -->
     <main class="md:ml-64 min-h-screen flex flex-col">
 
         <div class="p-8 flex-1">
@@ -126,7 +116,6 @@
             </h3>
 
             <div class="flex justify-center gap-8 text-[#f7f1e8] flex-wrap">
-
                 <a href="https://www.instagram.com/dutabaca_unimal?igsh=MW16bGV3dXBzM3cwOA=="
                    target="_blank"
                    class="font-[Montserrat] hover:text-black">
@@ -149,15 +138,16 @@
                 © {{ date('Y') }} Duta Baca Universitas Malikussaleh
             </p>
 
-        </footer>
-    <p class="font-[poppins] mt-6 text-lg text-[#f7f1e8] -400">
+            <p class="font-[poppins] mt-6 text-lg text-[#f7f1e8] -400">
         © {{ date('Y') }} Duta Baca Universitas Malikussaleh
-    </p>    
+    </p>
+
+        </footer>    
 
     </main>
 
+    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
     <script>
         AOS.init({
             duration: 1000,

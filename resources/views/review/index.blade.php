@@ -11,7 +11,7 @@
     </h3>
 
     <p class="text-gray-500 mb-6">
-        Karya yang menunggu proses penilaian reviewer.
+        Karya yang menunggu proses penilaian penilai.
     </p>
 
     @if($karyas->count() > 0)
@@ -61,7 +61,7 @@
         <div class="text-center py-10">
 
             <p class="text-gray-500">
-                Tidak ada karya yang menunggu review.
+                Tidak ada karya yang menunggu penilaian.
             </p>
 
         </div>

@@ -24,9 +24,17 @@ class ReviewController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required',
-            'catatan_review' => 'nullable'
+            'status' => 'required'
         ]);
+
+        if (
+            $request->status == 'Ditolak' ||
+            $request->status == 'Revisi'
+        ) {
+            $request->validate([
+                'catatan_review' => 'required'
+            ]);
+        }
 
         $karya = Karya::findOrFail($id);
 
@@ -36,11 +44,20 @@ class ReviewController extends Controller
         $karya->save();
 
         if ($request->status == 'Diterima') {
-            return redirect()->route('publikasi.index')
-                ->with('success', 'Karya berhasil diterima.');
+
+            return redirect()
+                ->route('publikasi.index')
+                ->with(
+                    'success',
+                    'Karya berhasil diterima dan dipublikasikan.'
+                );
         }
 
-        return redirect()->route('review.index')
-            ->with('success', 'Penilaian berhasil disimpan.');
+        return redirect()
+            ->route('review.index')
+            ->with(
+                'success',
+                'Penilaian berhasil disimpan.'
+            );
     }
 }

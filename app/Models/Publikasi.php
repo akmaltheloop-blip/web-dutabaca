@@ -9,18 +9,10 @@ class Publikasi extends Model
     protected $table = 'publikasi';
     
     protected $fillable = [
-
         'judul',
-
-        'penulis',
-
         'kategori',
-
         'deskripsi',
-
-        'isi',
-
-        'cover'
-
+        'file',
+        'user_id'
     ];
 }
