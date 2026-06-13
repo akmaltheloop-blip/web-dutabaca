@@ -5,20 +5,10 @@ use App\Http\Controllers\PublikasiController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ReviewController;
 
-/*
-|--------------------------------------------------------------------------
-| Authentication System (Pindahkan ke Atas)
-|--------------------------------------------------------------------------
-| File ini harus dimuat lebih awal agar middleware 'auth' 
-| dikenali dengan benar oleh Laravel sebelum grup route di bawahnya berjalan.
-*/
+
 require __DIR__.'/auth.php';
 
-/*
-|--------------------------------------------------------------------------
-| Public Routes (Akses Tanpa Login)
-|--------------------------------------------------------------------------
-*/
+
 
 Route::get('/', function () {
     return view('dashboard');
@@ -49,5 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profil', function () {
         return view('profil.index');
     })->name('profil.index');
+
+    Route::get('/profil/edit', function () {
+        return view('profil.edit'); // pastikan Anda punya file resources/views/profil/edit.blade.php nantinya
+    })->name('profil.edit');
     
 });

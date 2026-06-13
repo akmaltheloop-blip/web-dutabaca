@@ -43,15 +43,15 @@
         text-white flex items-center justify-center
         mx-auto text-4xl font-bold">
 
-        {{ strtoupper(substr($user->name,0,1)) }}
+        {{ strtoupper(substr(auth()->user->name ?? 'G',0,1)) }}
     </div>
 
     <h2 class="mt-4 text-2xl font-bold text-[#5b3b1c]">
-        {{ $user->name }}
+        {{ auth()->user()->name ?? 'GUEST' }}
     </h2>
 
     <p class="text-gray-500">
-        {{ '@'.$user->username }}
+        {{ '@'.auth()->user()->name ?? 'GUEST' }}
     </p>
 
     <div class="flex justify-center gap-3 mt-5">
@@ -87,7 +87,7 @@
 
     <div class="bg-white rounded-xl shadow p-5 text-center">
         <h3 class="text-3xl font-bold text-green-600">
-            {{ $published }}
+            {{ $published ?? 0 }}
         </h3>
         <p class="text-gray-600">
             Published
@@ -96,7 +96,7 @@
 
     <div class="bg-white rounded-xl shadow p-5 text-center">
         <h3 class="text-3xl font-bold text-yellow-500">
-            {{ $review }}
+            {{ $review ?? 0}}
         </h3>
         <p class="text-gray-600">
             Menunggu Review
@@ -105,7 +105,7 @@
 
     <div class="bg-white rounded-xl shadow p-5 text-center">
         <h3 class="text-3xl font-bold text-blue-500">
-            {{ $revisi }}
+            {{ $revisi ?? 0 }}
         </h3>
         <p class="text-gray-600">
             Revisi
@@ -114,7 +114,7 @@
 
     <div class="bg-white rounded-xl shadow p-5 text-center">
         <h3 class="text-3xl font-bold text-red-500">
-            {{ $ditolak }}
+            {{ $ditolak ?? 0 }}
         </h3>
         <p class="text-gray-600">
             Ditolak
@@ -133,22 +133,22 @@
 
         <div>
             <label class="text-gray-500">NIM</label>
-            <p class="font-semibold">{{ $user->nim }}</p>
+            <p class="font-semibold">{{ auth()->user()->nim ?? '-' }}</p>
         </div>
 
         <div>
             <label class="text-gray-500">Fakultas</label>
-            <p class="font-semibold">{{ $user->fakultas }}</p>
+            <p class="font-semibold">{{ auth()->user()->fakultas ?? '-' }}</p>
         </div>
 
         <div>
             <label class="text-gray-500">Program Studi</label>
-            <p class="font-semibold">{{ $user->prodi }}</p>
+            <p class="font-semibold">{{ auth()->user()->prodi ?? '-' }}</p>
         </div>
 
         <div>
             <label class="text-gray-500">Email</label>
-            <p class="font-semibold">{{ $user->email }}</p>
+            <p class="font-semibold">{{ auth()->user()->nim ?? '-' }}</p>
         </div>
 
     </div>
