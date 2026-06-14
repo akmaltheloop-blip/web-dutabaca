@@ -1,42 +1,52 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublikasiController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ReviewController;
 
+
 /*
 |--------------------------------------------------------------------------
-| Public Routes (Akses Tanpa Login)
+| Web Routes - Duta Baca Unimal
 |--------------------------------------------------------------------------
 */
 
+// 1. Halaman Utama / Dashboard
 Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// Penilaian / Review (Bisa diakses publik/reviewer sesuai rencana awal)
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard.index');
+
+// Penilaian / Review (Rute Controller untuk tim/reviewer)
 Route::get('/review', [ReviewController::class, 'index'])->name('review.index');
 Route::get('/review/{id}', [ReviewController::class, 'detail'])->name('review.detail');
 Route::post('/review/{id}', [ReviewController::class, 'updateStatus'])->name('review.update');
 
-// Publikasi (Menggunakan Resource Controller untuk CRUD)
+Route::get('/penilaian', function () {
+    return view('penilaian.index');
+})->name('penilaian.index');
+
 Route::resource('publikasi', PublikasiController::class);
 
 
-/*
-|--------------------------------------------------------------------------
-| Authenticated Routes (HANYA BISA DIAKSES SETELAH LOGIN)
-|--------------------------------------------------------------------------
-*/
+// 2. Halaman Publikasi
+Route::get('/publikasi', function () {
+    return view('publikasi.index');
+})->name('publikasi.index');
+
 Route::middleware('auth')->group(function () {
 
-    // Kirim Karya
+    // Kirim Karya (Sudah Terkunci Auth)
     Route::get('/kirim-karya', function () {
         return view('kirim-karya.index');
     })->name('kirim-karya.index');
 
-    // Profil & Edit Profil
+    // Profil & Edit Profil (Sudah Terkunci Auth)
     Route::get('/profil', function () {
         return view('profil.index');
     })->name('profil.index');
@@ -45,11 +55,11 @@ Route::middleware('auth')->group(function () {
         return view('profil.edit');
     })->name('profil.edit');
 
-    Route::put('/profil', function (\Illuminate\Http\Request $request) {
-       // 1. Ambil data user yang sedang login saat ini
+    Route::put('/profil', function (Request $request) {
+        // 1. Ambil data user yang sedang login saat ini
         $user = auth()->user();
 
-        // 2. Validasi data yang dikirim dari formulir (sesuaikan dengan name attribute di input Anda)
+        // 2. Validasi data yang dikirim dari formulir
         $request->validate([
             'name'     => 'required|string|max:255',
             'nim'      => 'nullable|string|max:20',
@@ -68,12 +78,6 @@ Route::middleware('auth')->group(function () {
         // 4. Kembalikan ke halaman profil dengan pesan sukses
         return redirect()->route('profil.index')->with('success', 'Profil berhasil diperbarui!');
     })->name('profil.update');
-    
 });
 
-/*
-|--------------------------------------------------------------------------
-| Authentication System
-|--------------------------------------------------------------------------
-*/
 require __DIR__.'/auth.php';
