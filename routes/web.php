@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublikasiController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\KaryaController;
+use App\Models\Karya;
 
 
 /*
@@ -42,14 +44,49 @@ Route::get('/publikasi', function () {
 Route::middleware('auth')->group(function () {
 
     // Kirim Karya (Sudah Terkunci Auth)
-    Route::get('/kirim-karya', function () {
-        return view('kirim-karya.index');
-    })->name('kirim-karya.index');
+    Route::get('/kirim-karya', [KaryaController::class, 'index'])
+    ->name('kirim-karya.index');
+
+Route::post('/kirim-karya', [KaryaController::class, 'store'])
+    ->name('kirim-karya.store');
+
+Route::get('/kirim-karya/sukses', [KaryaController::class, 'sukses'])
+    ->name('kirim-karya.sukses');
 
     // Profil & Edit Profil (Sudah Terkunci Auth)
     Route::get('/profil', function () {
-        return view('profil.index');
-    })->name('profil.index');
+
+    $user = auth()->user();
+
+    $published = Karya::where('user_id', $user->id)
+        ->where('status', 'Diterima')
+        ->count();
+
+    $review = Karya::where('user_id', $user->id)
+        ->where('status', 'Menunggu Review')
+        ->count();
+
+    $revisi = Karya::where('user_id', $user->id)
+        ->where('status', 'Revisi')
+        ->count();
+
+    $ditolak = Karya::where('user_id', $user->id)
+        ->where('status', 'Ditolak')
+        ->count();
+
+    $karyas = Karya::where('user_id', $user->id)
+        ->latest()
+        ->get();
+
+    return view('profil.index', compact(
+        'published',
+        'review',
+        'revisi',
+        'ditolak',
+        'karyas'
+    ));
+
+})->name('profil.index');
 
     Route::get('/profil/edit', function () {
         return view('profil.edit');
