@@ -36,7 +36,7 @@
 
                     <input type="text"
                         name="name"
-                        value="{{ old('name', $user->name) }}"
+                        value="{{ old('name', auth()->user()->name ?? '') }}"
                         class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b3b1c]">
                 </div>
 
@@ -48,7 +48,7 @@
 
                     <input type="text"
                         name="nim"
-                        value="{{ old('nim', $user->nim) }}"
+                        value="{{ old('nim', auth()->user()->nim ?? '') }}"
                         class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b3b1c]">
                 </div>
 
@@ -60,7 +60,7 @@
 
                     <input type="text"
                         name="fakultas"
-                        value="{{ old('fakultas', $user->fakultas) }}"
+                        value="{{ old('fakultas', auth()->user()->fakultas ?? '') }}"
                         class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b3b1c]">
                 </div>
 
@@ -72,7 +72,7 @@
 
                     <input type="text"
                         name="prodi"
-                        value="{{ old('prodi', $user->prodi) }}"
+                        value="{{ old('prodi', auth()->user()->prodi ?? '') }}"
                         class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b3b1c]">
                 </div>
 
@@ -84,7 +84,7 @@
 
                     <input type="text"
                         name="username"
-                        value="{{ old('username', $user->username) }}"
+                        value="{{ old('username', auth()->user()->username ?? '') }}"
                         class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b3b1c]">
                 </div>
 
@@ -96,7 +96,7 @@
 
                     <input type="email"
                         name="email"
-                        value="{{ old('email', $user->email) }}"
+                        value="{{ old('email', auth()->user()->email ?? '') }}"
                         class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b3b1c]">
                 </div>
 
