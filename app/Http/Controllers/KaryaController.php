@@ -9,7 +9,17 @@ class KaryaController extends Controller
 {
     public function index()
     {
-        return view('kirim-karya.index');
+        $karyas = collect();
+
+        if(auth()->check())
+        {
+        $karyas = Karya::where('user_id', auth()->id())
+            ->latest()
+            ->get();
+        }
+
+        return view('kirim-karya.index', compact('karyas'));
+    
     }
 
     public function store(Request $request)

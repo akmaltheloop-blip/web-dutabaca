@@ -29,28 +29,20 @@ Route::get('/review', [ReviewController::class, 'index'])->name('review.index');
 Route::get('/review/{id}', [ReviewController::class, 'detail'])->name('review.detail');
 Route::post('/review/{id}', [ReviewController::class, 'updateStatus'])->name('review.update');
 
-Route::get('/penilaian', function () {
-    return view('penilaian.index');
-})->name('penilaian.index');
+Route::get('/penilaian', [ReviewController::class, 'index'])
+->name('penilaian.index');
 
 Route::resource('publikasi', PublikasiController::class);
 
-
-// 2. Halaman Publikasi
-Route::get('/publikasi', function () {
-    return view('publikasi.index');
-})->name('publikasi.index');
-
+Route::get('/kirim-karya', [KaryaController::class, 'index'])
+    ->name('kirim-karya.index');
+    
 Route::middleware('auth')->group(function () {
 
-    // Kirim Karya (Sudah Terkunci Auth)
-    Route::get('/kirim-karya', [KaryaController::class, 'index'])
-    ->name('kirim-karya.index');
-
-Route::post('/kirim-karya', [KaryaController::class, 'store'])
+    Route::post('/kirim-karya', [KaryaController::class, 'store'])
     ->name('kirim-karya.store');
 
-Route::get('/kirim-karya/sukses', [KaryaController::class, 'sukses'])
+    Route::get('/kirim-karya/sukses', [KaryaController::class, 'sukses'])
     ->name('kirim-karya.sukses');
 
     // Profil & Edit Profil (Sudah Terkunci Auth)
@@ -78,6 +70,7 @@ Route::get('/kirim-karya/sukses', [KaryaController::class, 'sukses'])
         ->latest()
         ->get();
 
+
     return view('profil.index', compact(
         'published',
         'review',
@@ -89,6 +82,7 @@ Route::get('/kirim-karya/sukses', [KaryaController::class, 'sukses'])
 })->name('profil.index');
 
     Route::get('/profil/edit', function () {
+        
         return view('profil.edit');
     })->name('profil.edit');
 

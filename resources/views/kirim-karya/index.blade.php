@@ -4,6 +4,38 @@
 
 @section('content')
 
+@guest
+    
+<div class="bg-white rounded-2xl p-8 shadow-sm max-w-3xl mx-auto">
+
+    <h3 class="text-3xl font-bold text-[#5b3b1c] mb-3 text-center">
+        Selamat Datang di Web Duta Baca
+    </h3>
+
+    <p class="text-gray-600 mb-6 text-center">
+        Untuk mengirim karya, silakan login atau daftar akun terlebih dahulu.
+    </p>
+
+    <div class="flex justify-center gap-4">
+
+        <a href="{{ route('login') }}"
+            class="px-6 py-3 bg-white text-[#5b3b1c] border border-[#5b3b1c] rounded-xl font-semibold">
+            Login
+        </a>
+
+        <a href="{{ route('register') }}"
+            class="px-6 py-3 bg-white text-[#5b3b1c] border border-[#5b3b1c] rounded-xl font-semibold">
+            Register
+        </a>
+
+    </div>
+
+</div>
+
+@endguest
+
+@auth
+
 <div class="bg-white rounded-2xl p-8 shadow-sm">
 
     <h2 class="text-2xl font-bold text-[#5b3b1c] mb-6">
@@ -64,7 +96,7 @@
             <input
                 type="file"
                 name="file"
-                accept=".pdf"
+                accept=".pd"
                 class="w-full border rounded-lg px-4 py-2">
         </div>
 
@@ -77,102 +109,6 @@
     </form>
 
 </div>
-
-<div class="bg-white rounded-2xl shadow-md p-8 mt-6">
-
-    <h3 class="text-xl font-bold text-[#5b3b1c] mb-6">
-        Riwayat Karya Saya
-    </h3>
-
-    @if($karyas->count())
-
-        <div class="overflow-x-auto">
-
-            <table class="w-full border-collapse">
-
-                <thead>
-                    <tr class="bg-gray-100">
-
-                        <th class="p-3 text-left">
-                            Judul
-                        </th>
-
-                        <th class="p-3 text-left">
-                            Kategori
-                        </th>
-
-                        <th class="p-3 text-left">
-                            Status
-                        </th>
-
-                        <th class="p-3 text-left">
-                            Tanggal
-                        </th>
-
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                @foreach($karyas as $karya)
-
-                    <tr class="border-b">
-
-                        <td class="p-3">
-                            {{ $karya->judul }}
-                        </td>
-
-                        <td class="p-3">
-                            {{ $karya->kategori }}
-                        </td>
-
-                        <td class="p-3">
-
-                            @if($karya->status == 'Menunggu Review')
-                                <span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">
-                                    Menunggu Review
-                                </span>
-
-                            @elseif($karya->status == 'Diterima')
-                                <span class="px-3 py-1 rounded-full bg-green-100 text-green-700">
-                                    Diterima
-                                </span>
-
-                            @elseif($karya->status == 'Revisi')
-                                <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700">
-                                    Revisi
-                                </span>
-
-                            @elseif($karya->status == 'Ditolak')
-                                <span class="px-3 py-1 rounded-full bg-red-100 text-red-700">
-                                    Ditolak
-                                </span>
-                            @endif
-
-                        </td>
-
-                        <td class="p-3">
-                            {{ $karya->created_at->format('d M Y') }}
-                        </td>
-
-                    </tr>
-
-                @endforeach
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    @else
-
-        <p class="text-gray-500">
-            Belum ada karya yang dikirim.
-        </p>
-
-    @endif
-
-</div>
+@endauth
 
 @endsection

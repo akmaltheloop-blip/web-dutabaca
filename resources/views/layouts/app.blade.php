@@ -76,27 +76,45 @@
            Publikasi
             </a>
 
-
+@if(!auth()->check() || auth()->user()->role === 'penulis')
             {{-- Kirim Karya --}}
-            <a href="{{ route('kirim-karya.index') }}"
-             class="font-[Montserrat] block px-4 py-3 rounded-xl transition
-             {{ request()->routeIs('kirim-karya.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
-              Kirim Karya
-            </a>
+<a href="{{ route('kirim-karya.index') }}"
+   class="font-[Montserrat] block px-4 py-3 rounded-xl transition
+   {{ request()->routeIs('kirim-karya.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+    Kirim Karya
+</a>
 
-            {{-- penilaian --}}
-            <a href="{{ route('penilaian.index') }}"
-               class="font-[Montserrat] block px-4 py-3 rounded-xl hover:bg-[#f7f1e8] transition
-               {{ request()->routeIs('penilaian.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
-                Penilaian
-            </a>
+@endif
 
-            {{-- Profil --}}
-            <a href="{{ route('profil.index') }}"
-            class="font-[Montserrat] block px-4 py-3 rounded-xl transition
-              {{ request()->routeIs('profil.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
-             Profil
-            </a>
+{{-- Reviewer --}}
+@if(auth()->check() && auth()->user()->role === 'reviewer')
+
+<a href="{{ route('penilaian.index') }}"
+   class="font-[Montserrat] block px-4 py-3 rounded-xl transition
+   {{ request()->routeIs('penilaian.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+    Penilaian
+</a>
+
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button type="submit"
+        class="w-full text-left px-4 py-3 rounded-xl text-red-600 hover:bg-red-50">
+        Logout
+    </button>
+</form>
+
+@endif
+
+{{-- Penulis --}}
+@if(auth()->check() && auth()->user()->role === 'penulis')
+
+<a href="{{ route('profil.index') }}"
+   class="font-[Montserrat] block px-4 py-3 rounded-xl transition
+   {{ request()->routeIs('profil.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+    Profil
+</a>
+
+@endif
         </nav>
 
     </aside>

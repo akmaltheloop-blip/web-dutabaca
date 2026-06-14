@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
+
     public function index()
     {
+        if (auth()->user()->role !== 'reviewer') {
+        abort(403);
+        }
+
         $karyas = Karya::where('status', 'Menunggu Review')->get();
 
         return view('review.index', compact('karyas'));
@@ -16,6 +21,10 @@ class ReviewController extends Controller
 
     public function detail($id)
     {
+        if (auth()->user()->role !== 'reviewer') {
+        abort(403);
+        }
+
         $karya = Karya::findOrFail($id);
 
         return view('review.detail', compact('karya'));
@@ -23,6 +32,10 @@ class ReviewController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
+        if (auth()->user()->role !== 'reviewer') {
+        abort(403);
+        }
+
         $request->validate([
             'status' => 'required'
         ]);

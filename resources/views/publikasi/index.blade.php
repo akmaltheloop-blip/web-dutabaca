@@ -3,6 +3,7 @@
 @section('title', 'Publikasi')
 
 @section('content')
+
 <style>
 .kategori-btn{
     padding: 10px 22px;
@@ -97,13 +98,33 @@
                     Cerpen
                 </span>
 
-                <h2 class="text-3xl font-bold text-[#5B371E] mt-4">
-                    Judul Publikasi Terbaru
-                </h2>
+                @php
+    $featured = $publikasi->first();
+@endphp
 
-                <p class="text-gray-500 mt-2">
-                    Oleh Miranda Yeppo • 8 Juni 2026
-                </p>
+@if($featured)
+
+<h2 class="text-3xl font-bold text-[#5B371E] mt-4">
+    {{ $featured->judul }}
+</h2>
+
+<p class="text-gray-500 mt-2">
+    Oleh {{ $featured->user->name }}
+    •
+    {{ $featured->created_at->format('d M Y') }}
+</p>
+
+<p class="text-gray-600 mt-4">
+    {{ $featured->deskripsi ?: 'Karya mahasiswa yang telah lolos review.' }}
+</p>
+
+<a href="{{ asset('storage/'.$featured->file) }}"
+   target="_blank"
+   class="inline-block mt-6 bg-[#5B371E] text-white px-6 py-3 rounded-xl hover:bg-[#704829] transition">
+    Baca Karya
+</a>
+
+@endif
 
                 <p class="text-gray-600 mt-4">
                     Ini adalah deskripsi singkat publikasi terbaru yang akan menarik minat pembaca untuk membuka karya secara lengkap.
@@ -125,7 +146,7 @@
     {{-- 2 Card Kecil --}}
 <div class="flex flex-col gap-4">
 
-    @for($i = 1; $i <= 2; $i++)
+    @foreach($publikasi->skip(1)->take(2) as $karya)
 
     <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:-translate-y-2 hover:shadow-xl transition duration-300">
 
@@ -137,18 +158,18 @@
         <div class="p-3">
 
             <h3 class="font-semibold text-[#5B371E]">
-                Judul Karya {{ $i }}
+                {{ $karya->judul }}
             </h3>
 
             <p class="text-gray-500 text-sm mt-1">
-                7 Juni 2026
+                {{ $karya->created_at->format('d M Y') }}
             </p>
 
         </div>
 
     </div>
 
-    @endfor
+    @endforeach
 
     </div>
 
@@ -157,7 +178,7 @@
 {{-- Card Lanjutan --}}
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-    @for($i = 3; $i <= 8; $i++)
+    @foreach($publikasi->skip(3) as $karya)
 
     <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:-translate-y-2 hover:shadow-xl transition duration-300">
 
@@ -169,18 +190,18 @@
         <div class="p-4">
 
             <h3 class="font-bold text-lg text-[#5B371E]">
-                Judul Karya {{ $i }}
+                {{ $karya->judul }}
             </h3>
 
             <p class="text-gray-500 text-sm mt-2">
-                {{ $i }} Juni 2026
+                {{ $karya->created_at->format('d M Y') }}
             </p>
 
         </div>
 
     </div>
 
-    @endfor
+    @endforeach
 
 </div>
 

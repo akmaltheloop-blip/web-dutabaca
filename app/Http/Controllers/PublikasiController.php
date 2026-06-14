@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Publikasi;
+use App\Models\Karya;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,9 +13,11 @@ class PublikasiController extends Controller
      */
     public function index()
     {
-    $publikasi = publikasi::latest()->get();
+        $publikasi = Karya::where('status','Diterima')
+        ->latest()
+        ->get();
 
-    return view('publikasi.index', compact('publikasi'));
+        return view('publikasi.index', compact('publikasi'));
     }
 
     /**
