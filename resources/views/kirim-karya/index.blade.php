@@ -89,20 +89,20 @@
         </div>
 
         <div class="mb-6">
-            <label class="block mb-2 font-medium">
+            <label class="px-6 py-3 bg-[#5b3b1c] text-white border border-[#5b3b1c] rounded-xl font-semibold transition duration-300 hover:text-[#5b3b1c]">
                 Upload File
             </label>
 
             <input
                 type="file"
                 name="file"
-                accept=".pd"
+                accept=".pdf,.doc,.docx"
                 class="w-full border rounded-lg px-4 py-2">
         </div>
 
         <button
             type="submit"
-            class="bg-blue-600 text-white px-6 py-2 rounded-lg">
+            class="px-6 py-3 bg-white text-[#5b3b1c] border border-[#5b3b1c] rounded-xl font-semibold">
             Kirim Karya
         </button>
 

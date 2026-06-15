@@ -28,7 +28,7 @@ class KaryaController extends Controller
             'judul' => 'required|max:255',
             'kategori' => 'required',
             'deskripsi' => 'nullable',
-            'file' => 'required|mimes:pdf|max:2048',
+            'file' => 'required|mimes:pdf,doc,docx|max:10240',
         ]);
 
         $filePath = $request->file('file')

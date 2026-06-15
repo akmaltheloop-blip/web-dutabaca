@@ -126,17 +126,6 @@
 
 @endif
 
-                <p class="text-gray-600 mt-4">
-                    Ini adalah deskripsi singkat publikasi terbaru yang akan menarik minat pembaca untuk membuka karya secara lengkap.
-                </p>
-
-                <a href="#"
-                   class="inline-block mt-6 bg-[#5B371E] text-white px-6 py-3 rounded-xl hover:bg-[#704829] transition">
-
-                    Baca Selengkapnya
-
-                </a>
-
             </div>
 
         </div>
@@ -151,7 +140,7 @@
     <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:-translate-y-2 hover:shadow-xl transition duration-300">
 
         <img
-            src="https://picsum.photos/400/{{ 250 + $i }}"
+            src="https://picsum.photos/400/250"
             class="w-full h-36 object-cover"
         >
 
