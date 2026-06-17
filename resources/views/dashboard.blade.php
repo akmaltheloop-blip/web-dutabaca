@@ -17,7 +17,7 @@
 
         <div>
             <h2 class="font-[Poppins] text-2xl font-bold text-[#5b3b1c]">
-                Duta Baca
+                DUTA BACA
             </h2>
 
             <p class="font-[Montserrat] text-[#482d13] text-sm">
@@ -285,8 +285,67 @@
     </div>
 
 </div>
+{{-- Tentang Duta Baca --}}
+<div
+    data-aos="fade-right"
+    class="bg-white rounded-3xl p-8 shadow-xl">
 
-    
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+
+        {{-- Foto --}}
+        <img
+            src="{{ asset('images/foto-dutabaca4.jpeg') }}"
+            class="w-full h-64 object-cover rounded-2xl"
+            data-aos="fade-up"
+            data-aos-duration="1200">
+
+        {{-- Teks --}}
+        <div>
+            <h3 class="font-[Lora] text-2xl font-bold text-[#5b3b1c] mb-4">
+                Tentang Duta Baca
+            </h3>
+
+            <p class="text-black leading-8">
+                Duta Baca Universitas Malikussaleh merupakan wadah yang
+                berperan dalam meningkatkan budaya literasi di lingkungan
+                kampus. Melalui berbagai kegiatan membaca, menulis,
+                publikasi karya, dan kolaborasi dengan komunitas literasi,
+                Duta Baca hadir untuk menginspirasi mahasiswa agar aktif
+                mengembangkan wawasan serta kreativitas melalui literasi.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+  
+
+{{-- tentang --}}
+    <div
+    data-aos="fade-left"
+    class="bg-white rounded-3xl p-8 shadow-xl">
+
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+
+        {{-- Teks --}}
+        <div>
+            <h3 class="font-[Lora] text-2xl font-bold text-[#5b3b1c] mb-4">
+                tentang
+            </h3>
+
+            <ul class="list-disc pl-5 text-black leading-8 space-y-2">
+                <li>tentang duta baca untuk tambahan</li>
+            </ul>
+        </div>
+
+        {{-- Foto --}}
+        <img
+            src="{{ asset('images/foto-dutabaca5.jpeg') }}"
+             class="w-full h-64 object-cover rounded-2xl mb-5"
+             data-aos="fade-down"
+             data-aos-duration="1200">
+
+    </div>
 
 </div>
 

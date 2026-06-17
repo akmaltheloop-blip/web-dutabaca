@@ -26,6 +26,7 @@
 
 .swiper-slide {
     height: auto;
+    }
 .fotoSwiper {
     overflow: hidden;
 }
@@ -46,117 +47,131 @@
 </head>
 
 
-<body class="bg-[#fcf9f8] text-gray-800 font-[Inter]">
+<body class="bg-[#fcf9f8] text-gray-800 font-[Inter] overflow-x-hidden">
 
-    {{-- Sidebar --}}
-    <aside class="fixed left-0 top-0 h-screen w-64 bg-[#fff1] border-r border-[#eee] hidden md:flex flex-col shadow-sm">
+    {{-- Navbar --}}
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
 
-        <div class="p-6 border-b">
-    <h1 class="font-[Poppins] text-[#5b3b1c] text-3xl font-bold">
-        Duta Baca
-    </h1>
+        <div class="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
 
-    <p class="font-[Montserrat] text-xs text-[#482d13] uppercase mt-1">
-        Universitas Malikussaleh
-    </p>
-</div>
-        <nav class="flex-1 p-4 space-y-2">
+            {{-- Logo --}}
+            <div>
+                <h1 class="font-[Poppins] text-2xl font-bold text-[#5b3b1c]">
+                    DUTA BACA
+                </h1>
 
-            {{-- Dashboard --}}
-           <a href="{{ route('dashboard') }}"
-             class="font-[Montserrat] block px-4 py-3 rounded-xl transition
-             {{ request()->routeIs('dashboard') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
-              Dashboard
-            </a>
+                <p class="font-[Montserrat] text-xs text-[#482d13] uppercase">
+                    Universitas Malikussaleh
+                </p>
+            </div>
 
-            {{-- Publikasi --}}
-            <a href="{{ route('publikasi.index') }}"
-             class="font-[Montserrat] block px-4 py-3 rounded-xl transition
-             {{ request()->routeIs('publikasi.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
-           Publikasi
-            </a>
+            {{-- Menu --}}
+            <div class="flex items-center gap-3">
 
-@if(!auth()->check() || auth()->user()->role === 'penulis')
-            {{-- Kirim Karya --}}
-<a href="{{ route('kirim-karya.index') }}"
-   class="font-[Montserrat] block px-4 py-3 rounded-xl transition
-   {{ request()->routeIs('kirim-karya.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
-    Kirim Karya
-</a>
+                <a href="{{ route('dashboard') }}"
+                   class="px-4 py-2 rounded-xl transition
+                   {{ request()->routeIs('dashboard') ? 'bg-[#ffd13b] font-bold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+                    DASHBOARD
+                </a>
 
-@endif
+                <a href="{{ route('publikasi.index') }}"
+                   class="px-4 py-2 rounded-xl transition
+                   {{ request()->routeIs('publikasi.*') ? 'bg-[#ffd13b] font-bold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+                    PUBLIKASI
+                </a>
 
-{{-- Reviewer --}}
-@if(auth()->check() && auth()->user()->role === 'reviewer')
+                @if(!auth()->check() || auth()->user()->role === 'penulis')
+                <a href="{{ route('kirim-karya.index') }}"
+                   class="px-4 py-2 rounded-xl transition
+                   {{ request()->routeIs('kirim-karya.*') ? 'bg-[#ffd13b] font-bold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+                    KIRIM KARYA
+                </a>
+                @endif
 
-<a href="{{ route('penilaian.index') }}"
-   class="font-[Montserrat] block px-4 py-3 rounded-xl transition
-   {{ request()->routeIs('penilaian.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
-    Penilaian
-</a>
+                @if(auth()->check() && auth()->user()->role === 'reviewer')
+                <a href="{{ route('penilaian.index') }}"
+                   class="px-4 py-2 rounded-xl transition
+                   {{ request()->routeIs('penilaian.*') ? 'bg-[#ffd13b] font-bold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+                    PENILAIAN
+                </a>
+                @endif
 
-<form method="POST" action="{{ route('logout') }}">
-    @csrf
-    <button type="submit"
-        class="w-full text-left px-4 py-3 rounded-xl text-red-600 hover:bg-red-50">
-        Logout
-    </button>
-</form>
+                @if(auth()->check() && auth()->user()->role === 'penulis')
+                <a href="{{ route('profil.index') }}"
+                   class="px-4 py-2 rounded-xl transition
+                   {{ request()->routeIs('profil.*') ? 'bg-[#ffd13b] font-bold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
+                    PROFIL
+                </a>
+                @endif
 
-@endif
+                @auth
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
 
-{{-- Penulis --}}
-@if(auth()->check() && auth()->user()->role === 'penulis')
+                    <button type="submit"
+                        class="px-4 py-2 rounded-xl text-red-600 hover:bg-red-50 transition">
+                        Logout
+                    </button>
+                </form> 
+                @endauth
 
-<a href="{{ route('profil.index') }}"
-   class="font-[Montserrat] block px-4 py-3 rounded-xl transition
-   {{ request()->routeIs('profil.*') ? 'bg-[#ffd13b] font-extrabold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
-    Profil
-</a>
+            </div>
 
-@endif
-        </nav>
+        </div>
 
-    </aside>
+    </nav>
 
     {{-- Main --}}
-    <main class="md:ml-64 min-h-screen flex flex-col">
+    <main class="min-h-screen flex flex-col">
 
-    
+        <div class="p-8 flex-1">
+            @yield('content')
+        </div>
 
-    <div class="p-8 flex-1">
-        @yield('content')
-    </div>
+   <footer class="bg-[#6d462a] mt-6 py-2 text-center">
 
-    <footer class="bg-[#6d462a] border-t border-[#6d462a] mt-20 py-4 text-center">
-
-    <h3 class="font-[poppins] text-2xl font-bold text-[#f7f5f3] mb-6">
+    <h3 class="font-[Poppins] text-lg font-bold text-[#f7f5f3] mb-2">
         Kontak Kami
     </h3>
 
-    <div class="flex justify-center gap-8 text-[#f7f1e8] -600 flex-wrap">
+    <div class="flex justify-center gap-6 flex-wrap text-[#f7f1e8]">
 
-        <a href="https://www.instagram.com/dutabaca_unimal?igsh=MW16bGV3dXBzM3cwOA=="
-           target="_blank"
-           class="font-[montserrat] hover:text-black">
-             Instagram
-        </a>
+    <a href="https://www.instagram.com/dutabaca_unimal?igsh=MW16bGV3dXBzM3cwOA=="
+       target="_blank"
+       class="flex items-center font-bold gap-2 hover:text-black transition">
 
-        <a href="#"
-           class="font-[montserrat] hover:text-black">
-            🌐 Website
-        </a>
+        <img src="{{ asset('images/logo ig.png') }}"
+             alt="Instagram"
+             class="w-12 h-12">
 
-        <a href="https://wa.me/085191365955"
-           class="font-[montserrat] hover:text-black">
-            ✉️ Whatsapp
-        </a>
+        <span>Instagram</span>
+    </a>
 
-    </div>
+    <a href="#"
+       class="flex items-center font-bold gap-2 hover:text-black transition">
 
-    <p class="font-[poppins] mt-6 text-lg text-[#f7f1e8] -400">
+        <img src="{{ asset('images/logo web.png') }}"
+             alt="Website"
+             class="w-10 h-10">
+
+        <span>Website</span>
+    </a>
+
+    <a href="https://wa.me/085191365955"
+       class="flex items-center font-bold gap-2 hover:text-black transition">
+
+        <img src="{{ asset('images/logo wa.png') }}"
+             alt="Whatsapp"
+             class="w-10 h-10">
+
+        <span>Whatsapp</span>
+    </a>
+
+</div>
+
+    <p class="mt-2 text-xs text-[#f7f1e8]">
         © {{ date('Y') }} Duta Baca Universitas Malikussaleh
-    </p>    
+    </p>
 
 </footer>
 
