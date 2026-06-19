@@ -20,6 +20,36 @@ class PublikasiController extends Controller
         return view('publikasi.index', compact('publikasi'));
     }
 
+public function puisi()
+{
+    $karyas = Karya::where('status','Diterima')
+                    ->where('kategori','Puisi')
+                    ->latest()
+                    ->get();
+
+    return view('publikasi.puisi', compact('karyas'));
+}
+
+public function cerpen()
+{
+    $karyas = Karya::where('status','Diterima')
+                    ->where('kategori','Cerpen')
+                    ->latest()
+                    ->get();
+
+    return view('publikasi.cerpen', compact('karyas'));
+}
+
+public function pantunquotes()
+{
+    $karyas = Karya::where('status','Diterima')
+                    ->where('kategori','Pantun & Quotes')
+                    ->latest()
+                    ->get();
+
+    return view('publikasi.pantun-quotes', compact('karyas'));
+}
+
     /**
      * Show the form for creating a new resource.
      */
@@ -67,4 +97,13 @@ class PublikasiController extends Controller
     {
         //
     }
+
+    public function kategori($kategori)
+{
+    $karyas = Karya::where('kategori', $kategori)->get();
+
+    return view('karya.kategori', compact('karyas', 'kategori'));
+}
+
+
 }

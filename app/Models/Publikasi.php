@@ -13,6 +13,7 @@ class Publikasi extends Model
         'kategori',
         'deskripsi',
         'file',
-        'user_id'
+        'user_id',
+        'cover',
     ];
 }
