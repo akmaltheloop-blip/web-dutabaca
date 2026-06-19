@@ -57,7 +57,10 @@
 
         <button
             type="submit"
-            class="bg-blue-600 text-white px-6 py-2 rounded-lg">
+            class="bg-[#6B4226] text-white px-6 py-2 rounded-lg border border-[#6B4226]
+           hover:bg-white hover:text-[#6B4226]
+           active:bg-white active:text-[#6B4226]
+           transition duration-300">
             Kirim Karya
         </button>
 
