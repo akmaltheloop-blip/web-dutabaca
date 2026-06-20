@@ -6,6 +6,7 @@ use App\Models\Karya;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilController extends Controller
 {
@@ -55,6 +56,7 @@ public function update(Request $request)
             'prodi' => 'required',
             'username' => 'required',
             'email' => 'required|email',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $user->name = $request->name;
@@ -67,6 +69,21 @@ public function update(Request $request)
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
+
+        if ($request->hasFile('foto')) {
+
+    // Hapus foto lama jika ada
+    if ($user->foto) {
+        Storage::disk('public')->delete($user->foto);
+    }
+
+    // Simpan foto baru
+    $path = $request->file('foto')
+                    ->store('foto-profil', 'public');
+
+    //dd($path);
+    $user->foto = $path;
+    }
         $user->save();
 
         return redirect()

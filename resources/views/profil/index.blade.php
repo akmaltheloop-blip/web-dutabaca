@@ -39,12 +39,18 @@
 
 <div class="bg-white rounded-2xl shadow-md p-8 text-center">
 
+    @if(auth()->user()->foto)
+    <img src="{{ asset('storage/' . auth()->user()->foto) }}"
+         alt="Foto Profil"
+         class="w-28 h-28 rounded-full object-cover mx-auto">
+@else
     <div class="w-28 h-28 rounded-full bg-[#5b3b1c]
         text-white flex items-center justify-center
         mx-auto text-4xl font-bold">
 
-        {{ strtoupper(substr(auth()->user->name ?? 'G',0,1)) }}
+        {{ strtoupper(substr(auth()->user()->name ?? 'G',0,1)) }}
     </div>
+@endif
 
     <h2 class="mt-4 text-2xl font-bold text-[#5b3b1c]">
         {{ auth()->user()->name ?? 'GUEST' }}
@@ -70,9 +76,9 @@
             @csrf
 
             <button
-                class="px-4 py-2 border border-red-500
-                text-red-500 rounded-lg
-                hover:bg-red-500
+                class="px-4 py-2 border border-[#8B2E2E]
+                text-[#8B2E2E] rounded-lg
+                hover:bg-[#8B2E2E]
                 hover:text-white transition">
 
                 Logout
@@ -153,7 +159,7 @@
 
     </div>
 
-    <div class="bg-white rounded-2xl shadow-md p-8 mt-6">
+    <div class="bg-[fafafa] rounded-2xl shadow-md p-8 mt-6 border">
 
     <h3 class="text-xl font-bold text-[#5b3b1c] mb-6">
         Riwayat Karya Saya
@@ -182,6 +188,10 @@
 
                         <th class="p-3 text-left">
                             Tanggal
+                        </th>
+
+                        <th class="p-3 text-center">
+                            Aksi
                         </th>
 
                     </tr>
@@ -218,6 +228,13 @@
                                     Revisi
                                 </span>
 
+                                @if($karya->catatan_review)
+                                <div class="mt-2 p-2 bg-blue-50 rounded text-sm">
+                                    <strong>Catatan:</strong><br>
+                                    {{ $karya->catatan_review }}
+                                </div>
+                                @endif
+
                             @elseif($karya->status == 'Ditolak')
                                 <span class="px-3 py-1 rounded-full bg-red-100 text-red-700">
                                     Ditolak
@@ -228,6 +245,23 @@
 
                         <td class="p-3">
                             {{ $karya->created_at->format('d M Y') }}
+                        </td>
+
+                        <td class="p-3 text-center">
+
+                            <a href="{{ asset('storage/' . $karya->file) }}"
+                                target="_blank"
+                                class="bg-[5b3b1c] text-white px-3 py-2 rounded-lg text-sm">
+
+                                Lihat
+                            </a>
+
+                            <a href="{{ asset('storage/' . $karya->file) }}"
+                                download
+                                class="bg-green-600 text-white px-3 py-2 rounded-lg text-sm ml-2">
+
+                                Download
+                            </a>
                         </td>
 
                     </tr>

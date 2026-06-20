@@ -81,34 +81,11 @@ Route::middleware('auth')->group(function () {
 
 })->name('profil.index');
 
-    Route::get('/profil/edit', function () {
-        
-        return view('profil.edit');
-    })->name('profil.edit');
+    Route::get('/profil/edit', [ProfilController::class,'edit']) 
+    ->name('profil.edit');
 
-    Route::put('/profil', function (Request $request) {
-        // 1. Ambil data user yang sedang login saat ini
-        $user = auth()->user();
-
-        // 2. Validasi data yang dikirim dari formulir
-        $request->validate([
-            'name'     => 'required|string|max:255',
-            'nim'      => 'nullable|string|max:20',
-            'fakultas' => 'nullable|string|max:100',
-            // 'prodi' => 'nullable|string|max:100', // aktifkan jika ada input prodi
-        ]);
-
-        // 3. Update data user di database
-        $user->update([
-            'name'     => $request->name,
-            'nim'      => $request->nim,
-            'fakultas' => $request->fakultas,
-            // 'prodi' => $request->prodi, // aktifkan jika ada input prodi
-        ]);
-
-        // 4. Kembalikan ke halaman profil dengan pesan sukses
-        return redirect()->route('profil.index')->with('success', 'Profil berhasil diperbarui!');
+    Route::put('/profil', [ProfilController::class, 'update'])
+        ->name('profil.update');
     })->name('profil.update');
-});
 
 require __DIR__.'/auth.php';
