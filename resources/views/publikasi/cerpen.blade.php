@@ -1,7 +1,3 @@
-@php
-use Illuminate\Support\Str;
-@endphp
-
 @extends('layouts.app')
 
 @section('title', 'Cerpen')
@@ -34,109 +30,187 @@ use Illuminate\Support\Str;
     box-shadow: 0 8px 20px rgba(122,81,52,.35);
 }
 
-.kategori-btn.active:hover{
-    background: #8b5d3c;
+.floating-btn{
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    color: white;
+    text-decoration: none;
+    font-weight: 200;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #6a452b, #b78661);
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+
+    transition: all .3s ease, bottom .15s ease-out;
 }
+
+.floating-btn:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(122,81,52,.35);
+}
+
+.floating-btn .icon{
+    font-size: 20px;
+    transition: transform .3s ease;
+}
+
+.floating-btn:hover .icon{
+    transform: rotate(-10deg);
+}
+
+/* Tampilan Tombol Pagination < dan > / Previous dan Next */
+.pagination-wrapper nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Memaksa SEMUA tombol (baik link maupun teks biasa) berwarna putih-cokelat */
+.pagination-wrapper nav a, 
+.pagination-wrapper nav span,
+.pagination-wrapper nav button {
+    padding: 10px 24px !important;
+    border-radius: 12px !important;
+    border: 1px solid #e5e7eb !important;
+    background-color: white !important;
+    color: #7a5134 !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center;
+}
+
+/* Efek Hover: Hanya tombol yang aktif (bisa diklik) yang berubah jadi cokelat saat didekati mouse */
+.pagination-wrapper nav a:hover,
+.pagination-wrapper nav button:hover {
+    background-color: #7a5134 !important;
+    color: white !important;
+    border-color: #7a5134 !important;
+}
+
+/* Menyembunyikan teks hitungan "Showing Z to X..." agar tidak mengganggu layout */
+.pagination-wrapper p {
+    display: none !important;
+}
+
 </style>
 
+{{-- Header --}}
 <div class="mb-8">
-
     <h2 class="text-3xl font-bold text-[#5b3b1c]">
         Cerpen
     </h2>
-
-<div class="bg-white rounded-3xl p-6 shadow-sm mb-8">
-
-<div class="flex flex-wrap gap-3">
-
-        <a href="{{ route('publikasi.index') }}"
-           class="kategori-btn">
-            Semua
-        </a>
-
-        <a href="{{ route('publikasi.puisi') }}"
-           class="kategori-btn">
-            Puisi
-        </a>
-
-        <a href="{{ route('publikasi.cerpen') }}"
-           class="kategori-btn active">
-            Cerpen
-        </a>
-
-        <a href="{{ route('publikasi.pantunquotes') }}"
-           class="kategori-btn">
-            Pantun & Quotes
-        </a>
-
-    </div>
-
-</div>
-
     <p class="text-gray-500 mt-2">
         Kumpulan karya cerpen mahasiswa.
     </p>
+</div>
+
+{{-- Kategori Tabs --}}
+<div class="bg-white rounded-3xl p-6 shadow-sm mb-8">
+    <div class="flex flex-wrap gap-3">
+        <a href="{{ route('publikasi.index') }}" class="kategori-btn">Semua</a>
+        <a href="{{ route('publikasi.puisi') }}" class="kategori-btn">Puisi</a>
+        <a href="{{ route('publikasi.cerpen') }}" class="kategori-btn active">Cerpen</a>
+        <a href="{{ route('publikasi.pantunquotes') }}" class="kategori-btn">Pantun & Quotes</a>
+    </div>
+</div>
+
+{{-- Content Grid --}}
+@if($karyas->count())
+
+<div class="grid md:grid-cols-3 gap-5 items-stretch">
+
+    @foreach($karyas as $karya)
+    <div class="bg-white rounded-2xl p-5 shadow-sm hover:-translate-y-1 hover:shadow-lg transition border-l-4 border-[#7a5134] flex flex-col justify-between">
+        
+        <div>
+            <span class="text-xs text-[#7a5134]">
+                {{ $karya->kategori }}
+            </span>
+            
+            <h3 class="font-bold text-lg text-[#5B371E] mt-2 line-clamp-2">
+                {{ $karya->judul }}
+            </h3>
+            
+            <p class="text-gray-500 text-sm mt-2">
+                Oleh {{ $karya->user->name ?? 'Anonim' }}
+            </p>
+            
+            <p class="text-gray-400 text-sm">
+                {{ $karya->created_at->format('d M Y') }}
+            </p>
+
+            @if($karya->deskripsi)
+            <p class="text-gray-600 text-sm mt-3 line-clamp-3">
+                {{ $karya->deskripsi }}
+            </p>
+            @endif
+        </div>
+
+        <div class="mt-4 pt-2">
+            <a
+                href="{{ asset('storage/'.$karya->file) }}"
+                target="_blank"
+                class="inline-flex text-[#7a5134] font-medium hover:underline"
+            >
+                Baca →
+            </a>
+        </div>
+
+    </div>
+    @endforeach
 
 </div>
 
-@if($karyas->count())
-
-<div class="grid md:grid-cols-2 gap-6">
-
-    @foreach($karyas as $karya)
-
-    <div class="bg-white rounded-2xl p-6 shadow-sm hover:-translate-y-2 hover:shadow-xl transition duration-300">
-
-        <span class="inline-block px-3 py-1 text-xs rounded-full bg-[#F5E8D5] text-[#5B371E]">
-            {{ $karya->kategori }}
-        </span>
-
-        <h3 class="text-xl font-bold text-[#5B371E] mt-4">
-            {{ $karya->judul }}
-        </h3>
-
-        <p class="text-gray-500 text-sm mt-2">
-            Oleh {{ $karya->user->name }}
-        </p>
-
-        <p class="text-gray-400 text-sm">
-            {{ $karya->created_at->format('d M Y') }}
-        </p>
-
-        @if($karya->deskripsi)
-        <p class="text-gray-600 mt-4">
-            {{ Str::limit($karya->deskripsi, 120) }}
-        </p>
-        @endif
-
-        <a
-            href="{{ asset('storage/'.$karya->file) }}"
-            target="_blank"
-            class="inline-flex items-center mt-5 text-[#7a5134] font-semibold hover:translate-x-1 transition"
-        >
-            Baca →
-        </a>
-
-    </div>
-
-    @endforeach
-
+{{-- Pembungkus Pagination Hanya Muncul Jika Ada Data --}}
+<div class="mt-12 mb-6 pagination-wrapper">
+    {{ $karyas->links() }}
 </div>
 
 @else
 
 <div class="bg-white rounded-2xl p-8 text-center shadow-sm">
-
     <h3 class="text-xl font-semibold text-[#5B371E]">
         Belum Ada Karya
     </h3>
-
     <p class="text-gray-500 mt-2">
         Belum ada karya cerpen yang dipublikasikan.
     </p>
-
 </div>
 
 @endif
 
+{{-- Tombol Floating --}}
+<a href="{{ route('kirim-karya.index') }}" class="floating-btn" id="floatingSubmitBtn">
+    <span>Kirim Karyamu Sekarang -></span>
+</a>
+
+{{-- Script Pengunci Posisi Tepat di Batas Bawah Area Putih --}}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("floatingSubmitBtn");
+        
+        if (btn) {
+            window.addEventListener("scroll", function () {
+                const totalPageHeight = document.documentElement.scrollHeight;
+                const scrolledFromTop = window.innerHeight + window.scrollY;
+                const distanceToBottom = totalPageHeight - scrolledFromTop;
+
+                if (distanceToBottom < 180) { 
+                    btn.style.bottom = (200 - distanceToBottom) + "px";
+                } else {
+                    btn.style.bottom = "30px";
+                }
+            });
+        }
+    });
+</script>
 @endsection
