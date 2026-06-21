@@ -190,7 +190,7 @@
 
 {{-- Pembungkus Pagination --}}
 <div class="mt-12 mb-6 pagination-wrapper">
-    {{ $publikasi->links() }}
+    {{ $karyas->links() }}
 </div>
 
 {{-- Tombol Floating --}}

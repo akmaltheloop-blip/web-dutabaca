@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->enum('role', [
             'penulis',
-            'reviewer'
+            'reviewer1',
+            'reviewer2'
             ])->default('penulis');
         });
     }

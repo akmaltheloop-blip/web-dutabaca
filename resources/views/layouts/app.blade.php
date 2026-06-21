@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Duta Baca</title>
 
     @vite(['resources/css/app.css','resources/js/app.js'])
 
@@ -12,14 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <title>Duta Baca</title>
-    <style>
-.swiper {
-    overflow: hidden;
-    padding: 15px 0 30px;
-}
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
+        <style>
 .swiper-wrapper {
     align-items: stretch;
 }
@@ -40,7 +36,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
 }
 </style>
 
@@ -88,7 +83,7 @@
                 </a>
                 @endif
 
-                @if(auth()->check() && auth()->user()->role === 'reviewer')
+                @if(auth()->check() && in_array(auth()->user()->role, ['reviewer1','reviewer2']))
                 <a href="{{ route('penilaian.index') }}"
                    class="px-4 py-2 rounded-xl transition
                    {{ request()->routeIs('penilaian.*') ? 'bg-[#ffd13b] font-bold text-[#5b3b1c]' : 'hover:bg-[#f7f1e8]' }}">
@@ -127,6 +122,7 @@
         <div class="p-8 flex-1">
             @yield('content')
         </div>
+
 
    <footer class="bg-[#6d462a] mt-6 py-2 text-center">
 
@@ -173,46 +169,38 @@
         © {{ date('Y') }} Duta Baca Universitas Malikussaleh
     </p>
 
-</footer>
-
-</main>
+    </footer>
+    </main>
 
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-<script>
-    AOS.init({
-        duration: 1000,
-        once: true
-    });
-</script>
+    <script>
+        AOS.init({
+            duration:1000,
+            once:true
+        });
+    </script>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<script>
-const swiper = new Swiper(".beritaSwiper", {
-    slidesPerView: 1,
-    spaceBetween: 20,
+    <script>
+        new Swiper(".beritaSwiper",{
+            slidesPerView:1,
+            spaceBetween:20,
+            autoplay:{
+                delay:2000,
+                disableOnInteraction:false
+            },
+            pagination:{
+                el:".swiper-pagination",
+                clickable:true
+            },
+            breakpoints:{
+                768:{slidesPerView:2},
+                1024:{slidesPerView:3}
+            }
+        });
+    </script>
 
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-
-    autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-    },
-
-    breakpoints: {
-        768: {
-            slidesPerView: 2,
-        },
-        1024: {
-            slidesPerView: 3,
-        },
-    },
-});
-</script>
 </body>
 </html>
-
