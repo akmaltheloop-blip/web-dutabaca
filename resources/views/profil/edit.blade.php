@@ -22,7 +22,9 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('profil.update') }}">
+        <form method="POST" 
+        action="{{ route('profil.update') }}"
+        enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -98,6 +100,25 @@
                         name="email"
                         value="{{ old('email', auth()->user()->email ?? '') }}"
                         class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b3b1c]">
+                </div>
+
+                <!-- Foto Profil -->
+                <div class="md:col-span-2">
+                    <label class="block mb-2 font-medium">
+                    Foto Profil
+                </label>
+
+                @if(auth()->user()->foto)
+                    <img src="{{ asset('storage/' . auth()->user()->foto) }}"
+                    class="w-24 h-24 rounded-full object-cover mb-4">
+                @endif
+
+                <input type="file"
+                name="foto"
+                accept="image/*"
+                class="w-full border rounded-xl px-4 py-3
+                    focus:outline-none focus:ring-2
+                    focus:ring-[#5b3b1c]">
                 </div>
 
             </div>

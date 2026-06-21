@@ -89,9 +89,6 @@
         </div>
 
         <div class="mb-6">
-            <label class="px-6 py-3 bg-[#5b3b1c] text-white border border-[#5b3b1c] rounded-xl font-semibold transition duration-300 hover:text-[#5b3b1c]">
-                Upload File
-            </label>
 
             <input
                 type="file"
@@ -102,7 +99,10 @@
 
         <button
             type="submit"
-            class="px-6 py-3 bg-white text-[#5b3b1c] border border-[#5b3b1c] rounded-xl font-semibold">
+            class="bg-[#6B4226] text-white px-6 py-2 rounded-lg border border-[#6B4226]
+           hover:bg-white hover:text-[#6B4226]
+           active:bg-white active:text-[#6B4226]
+           transition duration-300">
             Kirim Karya
         </button>
 
