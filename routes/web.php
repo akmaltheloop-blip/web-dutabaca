@@ -32,7 +32,17 @@ Route::post('/review/{id}', [ReviewController::class, 'updateStatus'])->name('re
 Route::get('/penilaian', [ReviewController::class, 'index'])
 ->name('penilaian.index');
 
-Route::resource('publikasi', PublikasiController::class);
+Route::get('/publikasi', [PublikasiController::class, 'index'])
+    ->name('publikasi.index');
+
+Route::get('/publikasi/puisi', [PublikasiController::class, 'puisi'])
+    ->name('publikasi.puisi');
+
+Route::get('/publikasi/cerpen', [PublikasiController::class, 'cerpen'])
+    ->name('publikasi.cerpen');
+
+Route::get('/publikasi/pantun-quotes', [PublikasiController::class, 'pantunquotes'])
+    ->name('publikasi.pantunquotes');
 
 Route::get('/kirim-karya', [KaryaController::class, 'index'])
     ->name('kirim-karya.index');

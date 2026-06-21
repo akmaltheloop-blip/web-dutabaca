@@ -9,62 +9,99 @@ use Illuminate\Http\Request;
 class PublikasiController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Halaman Utama Publikasi (Semua Karya) + Fitur Global Search
      */
-    public function index()
+    public function index(Request $request)
     {
-        $publikasi = Karya::where('status','Diterima')
-        ->latest()
-        ->get();
+        $search = $request->search;
+
+        $publikasi = Karya::where('status', 'Diterima')
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('judul', 'like', "%{$search}%")
+                      ->orWhere('deskripsi', 'like', "%{$search}%")
+                      ->orWhereHas('user', function ($userQuery) use ($search) {
+                          $userQuery->where('name', 'like', "%{$search}%");
+                      });
+                });
+            })
+            ->latest()
+            ->simplepaginate(9)
+            ->withQueryString();
 
         return view('publikasi.index', compact('publikasi'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Kategori: Puisi + Fitur Search Spesifik Puisi
      */
-    public function create()
+    public function puisi(Request $request)
     {
-        //
+        $search = $request->search;
+
+        $karyas = Karya::where('status', 'Diterima')
+            ->where('kategori', 'Puisi')
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('judul', 'like', "%{$search}%")
+                      ->orWhereHas('user', function ($userQuery) use ($search) {
+                          $userQuery->where('name', 'like', "%{$search}%");
+                      });
+                });
+            })
+            ->latest()
+            ->simplepaginate(9)
+            ->withQueryString();
+
+        return view('publikasi.puisi', compact('karyas'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Kategori: Cerpen + Fitur Search Spesifik Cerpen
      */
-    public function store(Request $request)
+    public function cerpen(Request $request)
     {
-        //
+        $search = $request->search;
+
+        $karyas = Karya::where('status', 'Diterima')
+            ->where('kategori', 'Cerpen')
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('judul', 'like', "%{$search}%")
+                      ->orWhereHas('user', function ($userQuery) use ($search) {
+                          $userQuery->where('name', 'like', "%{$search}%");
+                      });
+                });
+            })
+            ->latest()
+            ->simplepaginate(9)
+            ->withQueryString();
+
+        return view('publikasi.cerpen', compact('karyas'));
     }
 
     /**
-     * Display the specified resource.
+     * Kategori: Pantun & Quotes + Fitur Search Spesifik Pantun/Quotes
      */
-    public function show(Publikasi $publikasi)
+    public function pantunquotes(Request $request)
     {
-        //
-    }
+        $search = $request->search;
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Publikasi $publikasi)
-    {
-        //
-    }
+        $karyas = Karya::where('status', 'Diterima')
+            ->where('kategori', 'Pantun/Quotes') // Sesuaikan string ini dengan isi value di databasemu
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('judul', 'like', "%{$search}%")
+                      ->orWhereHas('user', function ($userQuery) use ($search) {
+                          $userQuery->where('name', 'like', "%{$search}%");
+                      });
+                });
+            })
+            ->latest()
+            ->simplepaginate(9)
+            ->withQueryString();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Publikasi $publikasi)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Publikasi $publikasi)
-    {
-        //
+        // Diarahkan ke file puisi.blade.php / cerpen.blade.php / pantunquotes.blade.php yang setipe
+        return view('publikasi.pantun-quotes', compact('karyas')); 
     }
 }
