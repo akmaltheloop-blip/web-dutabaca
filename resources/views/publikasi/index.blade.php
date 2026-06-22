@@ -79,16 +79,6 @@
 }
 </style>
 
-{{-- Header --}}
-<div class="mb-8">
-    <h2 class="text-3xl font-bold text-[#5b3b1c]">
-        Publikasi
-    </h2>
-    <p class="text-gray-500 mt-2">
-        Temukan berbagai karya mahasiswa.
-    </p>
-</div>
-
 {{-- Kategori + Search --}}
 <div class="bg-white rounded-3xl p-6 shadow-sm mb-8">
     <div class="flex flex-col md:flex-row justify-between gap-4">
